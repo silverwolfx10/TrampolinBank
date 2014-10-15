@@ -5,7 +5,9 @@ import java.sql.Date;
 public class Usuario {
 	private Integer id;
 	private String 	nome_completo;
-	private Integer	idade ;
+	private Integer	idade;
+	private String 	email;
+	private Integer	status;
 	private Date	created_at;
 	private Date 	updated_at;
 	
@@ -26,6 +28,19 @@ public class Usuario {
 	}
 	public void setIdade(Integer idade) {
 		this.idade = idade;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 	public Date getCreatedAt() {
 		return created_at;

@@ -11,6 +11,7 @@ public class Conta {
 	private String 	password;
 	private Float	saldo_poupanca;
 	private Float 	saldo_corrente;
+	private Integer	status;
 	private Date	created_at;
 	private Date 	updated_at;
 	public Integer getId() {
@@ -60,6 +61,13 @@ public class Conta {
 	}
 	public void setSaldoCorrente(Float saldo_corrente) {
 		this.saldo_corrente = saldo_corrente;
+	}
+	
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 	public Date getCreatedAt() {
 		return created_at;

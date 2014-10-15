@@ -17,8 +17,8 @@ public class ContaDAO {
 		
 		Connection conn = ConnectionFactory.getConnection();
 		
-		String sql = "INSERT INTO conta (id, id_usuario, agencia, conta, tipo_conta, password, saldo_poupanca, saldo_corrente, created_at) "
-					+ "VALUES(NULL,?,?,?,?,?,?,?, now())";
+		String sql = "INSERT INTO conta (id, id_usuario, agencia, conta, tipo_conta, password, saldo_poupanca, saldo_corrente, status, created_at) "
+					+ "VALUES(NULL,?,?,?,?,?,?,?,?, now())";
 		try{
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, c.getUsuario().getId());
@@ -28,6 +28,7 @@ public class ContaDAO {
 			stmt.setString(5, c.getPassword());
 			stmt.setFloat(6, c.getSaldoPoupanca());
 			stmt.setFloat(7, c.getSaldoCorrente());
+			stmt.setInt(8, c.getStatus());
 			stmt.executeUpdate();
 		
 		}catch(SQLException ex){

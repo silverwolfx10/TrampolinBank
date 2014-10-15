@@ -16,11 +16,13 @@ public class UsuarioDAO {
 		
 		Connection conn = ConnectionFactory.getConnection();
 		
-		String sql = "INSERT INTO usuario (id, nome_completo, idade, created_at) VALUES(NULL,?,?,?, now())";
+		String sql = "INSERT INTO usuario (id, nome_completo, email, idade, status, created_at) VALUES(NULL,?,?,?,?, ?, now())";
 		try{
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, u.getNomeCompleto());
-			stmt.setInt(2, u.getIdade());
+			stmt.setString(2, u.getEmail());
+			stmt.setInt(3, u.getIdade());
+			stmt.setInt(4, u.getStatus());
 			stmt.executeUpdate();
 		
 		}catch(SQLException ex){
@@ -35,12 +37,14 @@ public class UsuarioDAO {
 			
 			Connection conn = ConnectionFactory.getConnection();
 			
-			String sql = "UPDATE  usuario SET  nome_completo = ?, idade = ?, updated_at = now() WHERE id = ?";
+			String sql = "UPDATE  usuario SET  nome_completo = ?, email = ?, idade = ?, status = ?, updated_at = now() WHERE id = ?";
 			try{
 				PreparedStatement stmt = conn.prepareStatement(sql);
 				stmt.setString(1, u.getNomeCompleto());
-				stmt.setInt(2, u.getIdade());
-				stmt.setInt(3, u.getId());
+				stmt.setString(2, u.getEmail());
+				stmt.setInt(3, u.getIdade());
+				stmt.setInt(4, u.getStatus());
+				stmt.setInt(5, u.getId());
 				stmt.executeUpdate();
 			
 			}catch(SQLException ex){
