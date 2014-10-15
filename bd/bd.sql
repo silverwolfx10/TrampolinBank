@@ -18,6 +18,33 @@ USE `trampolin_bank`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `agenda`
+--
+
+DROP TABLE IF EXISTS `agenda`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `agenda` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `valor` float NOT NULL,
+  `conta_id` int(11) DEFAULT NULL,
+  `descricao` varchar(255) NOT NULL,
+  `agendado` datetime NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `agenda`
+--
+
+LOCK TABLES `agenda` WRITE;
+/*!40000 ALTER TABLE `agenda` DISABLE KEYS */;
+/*!40000 ALTER TABLE `agenda` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `conta`
 --
 
@@ -54,6 +81,30 @@ LOCK TABLES `conta` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `favoritos`
+--
+
+DROP TABLE IF EXISTS `favoritos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `favoritos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `conta_id` int(11) DEFAULT NULL,
+  `apelido` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `favoritos`
+--
+
+LOCK TABLES `favoritos` WRITE;
+/*!40000 ALTER TABLE `favoritos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `favoritos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `movimentacao`
 --
 
@@ -82,6 +133,32 @@ CREATE TABLE `movimentacao` (
 LOCK TABLES `movimentacao` WRITE;
 /*!40000 ALTER TABLE `movimentacao` DISABLE KEYS */;
 /*!40000 ALTER TABLE `movimentacao` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `operacao`
+--
+
+DROP TABLE IF EXISTS `operacao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `operacao` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(45) DEFAULT NULL,
+  `taxa` float DEFAULT NULL,
+  `prazo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `operacao`
+--
+
+LOCK TABLES `operacao` WRITE;
+/*!40000 ALTER TABLE `operacao` DISABLE KEYS */;
+INSERT INTO `operacao` VALUES (1,'DOC',1.5,2),(2,'TED',5,4);
+/*!40000 ALTER TABLE `operacao` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -154,4 +231,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-15 19:53:13
+-- Dump completed on 2014-10-15 20:39:40
