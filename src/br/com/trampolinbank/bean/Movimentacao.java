@@ -17,16 +17,16 @@ public class Movimentacao {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Conta getConta_id() {
+	public Conta getContaId() {
 		return conta_id;
 	}
-	public void setConta_id(Conta conta_id) {
+	public void setContaId(Conta conta_id) {
 		this.conta_id = conta_id;
 	}
-	public Integer getTipo_conta() {
+	public Integer getTipoConta() {
 		return tipo_conta;
 	}
-	public void setTipo_conta(Integer tipo_conta) {
+	public void setTipoConta(Integer tipo_conta) {
 		this.tipo_conta = tipo_conta;
 	}
 	public String getDescricao() {
@@ -41,10 +41,10 @@ public class Movimentacao {
 	public void setValor(Float valor) {
 		this.valor = valor;
 	}
-	public Date getCreated_at() {
+	public Date getCreatedAt() {
 		return created_at;
 	}
-	public void setCreated_at(Date created_at) {
+	public void setCreatedAt(Date created_at) {
 		this.created_at = created_at;
 	}
 	

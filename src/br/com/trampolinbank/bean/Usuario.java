@@ -15,10 +15,10 @@ public class Usuario {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getNome_completo() {
+	public String getNomeCompleto() {
 		return nome_completo;
 	}
-	public void setNome_completo(String nome_completo) {
+	public void setNomeCompleto(String nome_completo) {
 		this.nome_completo = nome_completo;
 	}
 	public Integer getIdade() {
@@ -27,16 +27,16 @@ public class Usuario {
 	public void setIdade(Integer idade) {
 		this.idade = idade;
 	}
-	public Date getCreated_at() {
+	public Date getCreatedAt() {
 		return created_at;
 	}
-	public void setCreated_at(Date created_at) {
+	public void setCreatedAt(Date created_at) {
 		this.created_at = created_at;
 	}
-	public Date getUpdated_at() {
+	public Date getUpdatedAt() {
 		return updated_at;
 	}
-	public void setUpdated_at(Date updated_at) {
+	public void setUpdatedAt(Date updated_at) {
 		this.updated_at = updated_at;
 	}
 	
