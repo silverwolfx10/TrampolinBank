@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Movimentacao {
 	
 	private Integer 	id;
-	private Conta 		conta_id;
+	private Conta 		conta;
 	private TipoConta	tipo_conta;
 	private String 		descricao;
 	private	Float 		valor;
@@ -17,11 +17,11 @@ public class Movimentacao {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Conta getContaId() {
-		return conta_id;
+	public Conta getConta() {
+		return conta;
 	}
-	public void setContaId(Conta conta_id) {
-		this.conta_id = conta_id;
+	public void setConta(Conta conta) {
+		this.conta = conta;
 	}
 	public TipoConta getTipoConta() {
 		return tipo_conta;

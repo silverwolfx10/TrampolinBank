@@ -40,10 +40,10 @@ public class Favoritos {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public Date getCreated_at() {
+	public Date getCreatedAt() {
 		return created_at;
 	}
-	public void setCreated_at(Date created_at) {
+	public void setCreatedAt(Date created_at) {
 		this.created_at = created_at;
 	}
 	
