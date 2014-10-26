@@ -19,7 +19,7 @@ public class ContaDAO {
 			stmt.setInt(1, c.getUsuario().getId());
 			stmt.setString(2, c.getAgencia());
 			stmt.setString(3, c.getConta());
-			stmt.setInt(4, c.getTipoConta());
+			stmt.setInt(4, c.getTipoConta().getId());
 			stmt.setString(5, c.getPassword());
 			stmt.setFloat(6, c.getSaldoPoupanca());
 			stmt.setFloat(7, c.getSaldoCorrente());
@@ -42,7 +42,7 @@ public class ContaDAO {
 			try{
 				PreparedStatement stmt = conn.prepareStatement(sql);
 				
-				stmt.setInt(1, c.getTipoConta());
+				stmt.setInt(1, c.getTipoConta().getId());
 				stmt.setString(2, c.getPassword());
 				stmt.setFloat(3, c.getSaldoPoupanca());
 				stmt.setFloat(4, c.getSaldoCorrente());

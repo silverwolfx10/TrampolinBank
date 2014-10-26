@@ -17,7 +17,7 @@ public class MovimentacaoDAO {
 		try{
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, m.getContaId().getId());
-			stmt.setInt(2, m.getTipoConta());
+			stmt.setInt(2, m.getTipoConta().getId());
 			stmt.setString(3, m.getDescricao());
 			stmt.setFloat(4, m.getValor());
 			stmt.executeUpdate();

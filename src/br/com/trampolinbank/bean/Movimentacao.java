@@ -4,12 +4,12 @@ import java.sql.Date;
 
 public class Movimentacao {
 	
-	private Integer id;
-	private Conta 	conta_id;
-	private Integer	tipo_conta;
-	private String 	descricao;
-	private	Float 	valor;
-	private Date 	created_at;
+	private Integer 	id;
+	private Conta 		conta_id;
+	private TipoConta	tipo_conta;
+	private String 		descricao;
+	private	Float 		valor;
+	private Date 		created_at;
 	
 	public Integer getId() {
 		return id;
@@ -23,10 +23,10 @@ public class Movimentacao {
 	public void setContaId(Conta conta_id) {
 		this.conta_id = conta_id;
 	}
-	public Integer getTipoConta() {
+	public TipoConta getTipoConta() {
 		return tipo_conta;
 	}
-	public void setTipoConta(Integer tipo_conta) {
+	public void setTipoConta(TipoConta tipo_conta) {
 		this.tipo_conta = tipo_conta;
 	}
 	public String getDescricao() {

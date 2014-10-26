@@ -91,6 +91,8 @@ CREATE TABLE `favoritos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `conta_id` int(11) DEFAULT NULL,
   `apelido` varchar(255) DEFAULT NULL,
+  `cpf` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -231,4 +233,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-15 20:39:40
+-- Dump completed on 2014-10-26 12:26:50
