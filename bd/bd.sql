@@ -90,6 +90,7 @@ DROP TABLE IF EXISTS `favoritos`;
 CREATE TABLE `favoritos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `conta_id` int(11) DEFAULT NULL,
+  `usuario_id` int(11) DEFAULT NULL,
   `apelido` varchar(255) DEFAULT NULL,
   `cpf` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
@@ -233,4 +234,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-26 12:26:50
+-- Dump completed on 2014-10-26 12:57:41

@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Favoritos {
 	private Integer id;
 	private Conta	conta;
+	private Usuario usuario;
 	private String 	apelido;
 	private String 	cpf;
 	private Date	created_at;
@@ -20,6 +21,12 @@ public class Favoritos {
 	}
 	public void setConta(Conta conta) {
 		this.conta = conta;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	public String getApelido() {
 		return apelido;
