@@ -52,7 +52,7 @@ public class TransferenciaManegedBean {
 		
 		agenda.setAgendado(data);
 		agenda.setConta(contaLogada);
-		agenda.setDescricao("Transferência para"+favorito.getConta().getAgencia()+" "+favorito.getConta().getConta());
+		agenda.setDescricao("Transferï¿½ncia para"+favorito.getConta().getAgencia()+" "+favorito.getConta().getConta());
 		agenda.setValor(movimentacao.getValor());
 		
 		new AgendaDAO().incluir(agenda);
@@ -82,7 +82,7 @@ public class TransferenciaManegedBean {
 			new ContaDAO().editar(contaBenefConta);
 			
 			movimentacao.setConta(contaLogada);
-			movimentacao.setDescricao("Transferência para"+favorito.getConta().getAgencia()+" "+favorito.getConta().getConta());
+			movimentacao.setDescricao("Transferï¿½ncia para"+favorito.getConta().getAgencia()+" "+favorito.getConta().getConta());
 			movimentacao.setTipoConta(new TipoConta().setId(favorito.getTipoConta().getId()));
 			if(movimentacao.getTipoConta().getId() == 1)
 				movimentacao.setSaldo(contaLogada.getSaldoCorrente());
@@ -92,7 +92,7 @@ public class TransferenciaManegedBean {
 			new MovimentacaoDAO().incluir(movimentacao);
 		}
 		
-		return new ContaManegedBean().atualiza();
+		return "inicio";
 	}
 	
 	public String cadastrar(){
@@ -109,7 +109,7 @@ public class TransferenciaManegedBean {
 			favorito.setTipoConta(new TipoConta().setId(idTipoConta));
 			new FavoritosDAO().incluir(favorito);
 		}else{
-			context.addMessage(null,new FacesMessage("Conta não encontrada!"));
+			context.addMessage(null,new FacesMessage("Conta nï¿½o encontrada!"));
 			return null;
 		}
 		return atualizaLista();

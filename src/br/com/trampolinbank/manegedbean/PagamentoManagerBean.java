@@ -51,7 +51,7 @@ public class PagamentoManagerBean {
 			new MovimentacaoDAO().incluir(movimentacao);
 		}
 		
-		return new ContaManegedBean().atualiza();
+		return "inicio";
 	}
 	
 	public String agendar() throws ParseException{
