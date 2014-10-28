@@ -1,0 +1,37 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:composition template="inicio.xhtml" >
+		<ui:define name="conteudo">
+			<div class="saldo">
+	            #{msg.labelSaldoAtual} R$ #{conta.saldoCorrente}
+	        </div>
+	        
+	         <div class="ultimosLancamentos">
+	            <span>Traferindo para: Allan</span>
+	            <div class="form">
+	                <label>
+	                    Valor:
+	                    <input type="text" />
+	                </label>
+	                <label>
+	                    Agendar para:
+	                    <input type="text" />
+	                </label>
+	                <label>
+	                    Operacao:
+	                    <!-- puxa dados do banco, dependedo da operacao tem uma taxa a ser calculada -->
+	                    <select></select>
+	                </label>
+	
+	                <input type="submit" value="Agendar Transferência" />
+	
+	            </div>
+	
+	        </div>
+		</ui:define>
+	</ui:composition>
+</html>
