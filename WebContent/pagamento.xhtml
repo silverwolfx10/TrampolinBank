@@ -1,0 +1,40 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:composition template="inicio.xhtml" >
+		<ui:define name="conteudo">
+			<div class="saldo">
+	            #{msg.labelSaldoAtual} R$ #{conta.saldoCorrente}
+	        </div>
+	        <div class="ultimosLancamentos">
+	            <span>Pagamento de contas</span>
+	            <div class="form">
+	                <label class="codigodebarras">
+	                    Código de barras:
+	                    <h:inputText value="#{pagamento.codigoBarras}"/>
+	                </label>
+	                <label>
+	                    Confirmar valor:
+	                   <h:inputText value="#{pagamento.valor}"/>
+	                </label>
+	                <label>
+	                    Agendar para:
+	                    <h:inputText value="#{pagamento.dataAgendamento}"/>
+	                </label>
+	                <label>
+	                    Senha:
+	                    <h:inputSecret value="#{pagamento.senha}"/>
+	                </label>
+	                <label>
+						<h:commandButton value="Agendar" action="#{pagamento.agendar}" style="margin-right:5px;"/>
+	                	<h:commandButton value="Efetuar Pagamento" action="#{pagamento.pagarConta}"/>
+					</label>
+	            </div>
+
+        </div>
+		</ui:define>
+	</ui:composition>
+</html>

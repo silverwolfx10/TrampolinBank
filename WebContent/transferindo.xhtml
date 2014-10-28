@@ -1,0 +1,42 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:composition template="inicio.xhtml" >
+		<ui:define name="conteudo">
+			<div class="saldo">
+	            #{msg.labelSaldoAtual} R$ #{conta.saldoCorrente}
+	        </div>
+	        
+	         <div class="ultimosLancamentos">
+	            <span>Traferindo para: Allan</span>
+	            <div class="form">
+	                <label>
+	                    Valor:
+	                     <h:inputText value="#{transferencia.movimentacao.valor}"/>
+	                </label>
+	              
+	                <label>
+	                    Senha:
+	                    <!-- puxa dados do banco, dependedo da operacao tem uma taxa a ser calculada -->
+	                    <h:inputSecret value="#{transferencia.conta.password}"/>
+	                </label>
+	                <label>
+	                    Data Agendamento:
+	                    <!-- puxa dados do banco, dependedo da operacao tem uma taxa a ser calculada -->
+	                    <h:inputText value="#{transferencia.dataAgendamento}"/>
+	                </label>
+					<label>
+	                   <h:commandButton value="Agendar" action="#{transferencia.agendar}" style="margin-right:5px;"/>
+	                   <h:commandButton value="Transferir" action="#{transferencia.transferir}"/>
+	                </label>
+	                
+	
+	            </div>
+	
+	        </div>
+		</ui:define>
+	</ui:composition>
+</html>

@@ -86,8 +86,14 @@
     width: 90%;
 }
 
+.conteudo .ultimosLancamentos .form select {
+    float: left;
+    width: 90%;
+}
+
 .conteudo .ultimosLancamentos .form input[type=submit]{
     float: left;
     width: 30%;
+    margin-top:20px;
 }
 

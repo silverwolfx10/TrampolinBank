@@ -14,24 +14,31 @@ import br.com.trampolinbrank.factory.ConnectionFactory;
 
 public class AgendaDAO {
 	
-	public void incluir(Agenda a) throws SQLException{
+	public void incluir(Agenda a){
 		
-		Connection conn = ConnectionFactory.getConnection();
+		Connection conn = null;
 		
-		String sql = "INSERT INTO agenda (id, valor, conta_id, descricao, agendado, created_at) "
-					+ "VALUES(NULL,?,?,?,?, now())";
-		try{
+		try {
+			conn = ConnectionFactory.getConnection();
+			
+			String sql = "INSERT INTO agenda (id, valor, conta_id, descricao, agendado, created_at) "
+						+ "VALUES(NULL,?,?,?,?, now())";
+			
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setFloat(1, a.getValor());
 			stmt.setInt(2, a.getConta().getId());
 			stmt.setString(3, a.getDescricao());
 			stmt.setDate(4, a.getAgendado());
 			stmt.executeUpdate();
-		
-		}catch(SQLException ex){
-			ex.printStackTrace();
-		}finally{
+			
 			conn.close();
+			
+		} catch (Exception e) {
+			try {
+				conn.close();
+			} catch (SQLException e1) {
+				System.out.println(e.getMessage());
+			}		
 		}
 
 	}

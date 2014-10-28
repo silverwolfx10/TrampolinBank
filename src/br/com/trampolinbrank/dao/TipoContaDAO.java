@@ -14,16 +14,20 @@ import br.com.trampolinbrank.factory.ConnectionFactory;
 
 public class TipoContaDAO {
 	
-public List<TipoConta> listar()  throws SQLException{
+public List<TipoConta> listar(){
 		
-		Connection conn = ConnectionFactory.getConnection();
+	Connection conn = null;
+	ArrayList<TipoConta> tipoContas = null;
+	
+	try {
+		conn = ConnectionFactory.getConnection();
 		
 		String sql = "select * from tipo_conta";
 		
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();
 		
-		ArrayList<TipoConta> tipoContas = new ArrayList<TipoConta>();
+		tipoContas = new ArrayList<TipoConta>();
 		
 		while(rs.next()){
 			TipoConta t = new TipoConta();
@@ -34,8 +38,18 @@ public List<TipoConta> listar()  throws SQLException{
 			tipoContas.add(t);
 		}
 		
-		conn.close();
 		
+	} catch (Exception e) {
+		System.out.println(e.getMessage());
+	}finally{
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	
 		return tipoContas;
 	}
 	

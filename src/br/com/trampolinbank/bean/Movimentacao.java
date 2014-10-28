@@ -10,6 +10,7 @@ public class Movimentacao {
 	private String 		descricao;
 	private	Float 		valor;
 	private Date 		created_at;
+	private Float 		saldo;
 	
 	public Integer getId() {
 		return id;
@@ -46,6 +47,12 @@ public class Movimentacao {
 	}
 	public void setCreatedAt(Date created_at) {
 		this.created_at = created_at;
+	}
+	public Float getSaldo() {
+		return saldo;
+	}
+	public void setSaldo(Float saldo) {
+		this.saldo = saldo;
 	}
 	
 }
