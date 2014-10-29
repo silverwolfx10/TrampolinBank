@@ -43,6 +43,10 @@
 	      <filter-name>LoginFilter</filter-name>
 	      <url-pattern>/faces/inicio.xhtml</url-pattern>
 	  </filter-mapping>
+	  	  <filter-mapping>
+	      <filter-name>LoginFilter</filter-name>
+	      <url-pattern>/faces/inicioP.xhtml</url-pattern>
+	  </filter-mapping>
 	  <filter-mapping>
 	      <filter-name>LoginFilter</filter-name>
 	      <url-pattern>/faces/lstHistorico.xhtml</url-pattern>
@@ -59,10 +63,22 @@
 	      <filter-name>LoginFilter</filter-name>
 	      <url-pattern>/faces/teste.xhtml</url-pattern>
 	  </filter-mapping>
+	    <filter-mapping>
+	      <filter-name>LoginFilter</filter-name>
+	      <url-pattern>/faces/transferencia.xhtml</url-pattern>
+	  </filter-mapping>
+	     <filter-mapping>
+	      <filter-name>LoginFilter</filter-name>
+	      <url-pattern>/faces/transferindo.xhtml</url-pattern>
+	  </filter-mapping>
 	  <welcome-file-list>
 	    <welcome-file>login.xhtml</welcome-file>
 	    <welcome-file>login.htm</welcome-file>
 	   
   </welcome-file-list>
+  
+  <session-config>
+        <session-timeout>1</session-timeout>
+    </session-config>
 	  
 </web-app>

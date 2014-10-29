@@ -65,7 +65,7 @@ public class ContaManegedBean extends Conta{
 		
 		if(constas.size() > 0){
 			contaLogada = constas.get(0);
-			
+			((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().setMaxInactiveInterval(120);
 			((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().setAttribute("contaLogada",contaLogada);
 			this.populaObj(constas.get(0));
 			
