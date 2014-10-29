@@ -1,0 +1,65 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:composition template="inicio.xhtml" >
+		<ui:define name="conteudo">
+			<div class="saldo">
+           	 #{msg.labelSaldoAtual} R$ #{conta.saldoCorrente}
+        	</div>
+        <div class="ultimosLancamentos">
+            <span>Consulta comprovantes</span>
+            <div class="form">
+                <label >
+                    Data Inicio:
+                    <h:inputText value="#{comprovante.dataInicio}"/>
+                </label>
+                <label>
+                    Até:
+                    <h:inputText value="#{comprovante.dataFim}"/>
+                </label>
+
+                <h:commandButton value="Buscar" action="#{comprovante.filtrar}"/>
+
+            </div>
+
+        </div>
+
+
+        <div class="ultimosLancamentos">
+            <span>Comprovantes</span>
+            <table class="stripped">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Lançamento</th>
+                        <th>Valor</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <ui:repeat var="h" value="#{comprovante.listaMovimentacoes}">
+						<tr>
+							<td align="center">
+								<h:outputText value="#{h.createdAt}" >
+				              		<f:convertDateTime pattern="dd/MM/yyyy" />
+				 				</h:outputText>
+				 			</td>
+							<td align="center" >#{h.descricao}</td>
+							<td align="center" >#{h.valor}</td>
+							
+							<td>
+								<h:commandLink target="blank" value="Ver Comprovante" action="#{comprovante.abrirComprovante(h.id)}" />
+							</td>
+						</tr>
+					</ui:repeat>
+
+                </tbody>
+            </table>
+
+        </div>
+		</ui:define>
+	</ui:composition>
+</html>

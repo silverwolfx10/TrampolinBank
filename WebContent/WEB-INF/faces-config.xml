@@ -4,5 +4,32 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
-
+	
+	<managed-bean>
+		<managed-bean-name>conta</managed-bean-name>
+		<managed-bean-class>br.com.trampolinbank.manegedbean.ContaManegedBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>transferencia</managed-bean-name>
+		<managed-bean-class>br.com.trampolinbank.manegedbean.TransferenciaManegedBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>pagamento</managed-bean-name>
+		<managed-bean-class>br.com.trampolinbank.manegedbean.PagamentoManagerBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>comprovante</managed-bean-name>
+		<managed-bean-class>br.com.trampolinbank.manegedbean.ComprovanteManegedBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<application>
+		<resource-bundle>
+			<base-name>br.com.trampolinbank.messages.messages</base-name>
+			<var>msg</var>
+		</resource-bundle>
+	</application>
+	
 </faces-config>

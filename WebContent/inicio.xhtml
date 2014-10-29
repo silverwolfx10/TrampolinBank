@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Login</title>
+ <link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+<h:body>
+<h:form>
+
+<div class="content">
+    <div class="topo">
+       <span>
+           #{msg.labelBoasVindas} #{conta.usuario.nomeCompleto}!
+       </span>
+    	<h:commandLink value="#{msg.labelSair}" action="#{conta.logout()}" />
+        <a href="#" class="poupanca">
+             #{msg.labelIrParaPoupanca}
+        </a>
+    </div>
+    <div class="menuLateral">
+        <a href="lstHistorico.xhtml">#{msg.labelConsultaSaldo}</a>
+        <a href="transferencia.xhtml">#{msg.labelTransferencia}</a>
+        <a href="pagamento.xhtml">#{msg.labelPagarConta}</a>
+        <a href="extrato.xhtml">#{msg.labelExtrato}</a>
+        <a href="comprovantes.xhtml">#{msg.labelComprovantes}</a>
+
+    </div>
+    <div class="conteudo">
+     	<ui:insert name="conteudo">
+	     	<div class="saldo">
+	            #{msg.labelSaldoAtual} R$ #{conta.saldoCorrente}
+	        </div>
+ 			<div class="ultimosLancamentos">
+	            <span> #{msg.labelUltimosLancamentos}</span>
+	            <table class="stripped">
+	                <thead>
+	                    <tr>
+	                        <th>#{msg.labelData}</th>
+	                        <th>#{msg.labelLancamento}</th>
+	                        <th>#{msg.labelValor}</th>
+	                        <th>#{msg.labelSaldo}</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <ui:repeat var="h" value="#{conta.listaMovimentacoes}">
+							<tr>
+								<td align="center">
+									<h:outputText value="#{h.createdAt}" >
+					              		<f:convertDateTime pattern="dd/MM/yyyy" />
+					 				</h:outputText>
+					 			</td>
+								<td align="center" >#{h.descricao}</td>
+								<td align="center" >#{h.valor}</td>
+								
+								<td align="center">
+									#{h.saldo}
+								</td>
+							</tr>
+						</ui:repeat>
+	                </tbody>
+	            </table>
+	        </div>    	
+     	</ui:insert>
+     </div>
+
+</div>
+
+</h:form>
+</h:body>
+</html>

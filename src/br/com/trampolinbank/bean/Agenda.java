@@ -7,8 +7,9 @@ public class Agenda {
 	private Float	valor;
 	private Conta	conta;
 	private String 	descricao;
-	private Date 	agendado;
+	private Date 	agendado = new Date(new java.util.Date().getTime());
 	private Date	created_at;
+	
 	public Integer getId() {
 		return id;
 	}

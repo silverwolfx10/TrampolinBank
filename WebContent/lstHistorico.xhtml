@@ -1,0 +1,44 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:composition template="inicio.xhtml" >
+		<ui:define name="conteudo">
+			<div class="saldo">
+	            #{msg.labelSaldoAtual} R$ #{conta.saldoCorrente}
+	        </div>
+ 			<div class="ultimosLancamentos">
+	            <span> #{msg.labelUltimosLancamentos}</span>
+	            <table class="stripped">
+	                <thead>
+	                    <tr>
+	                        <th>#{msg.labelData}</th>
+	                        <th>#{msg.labelLancamento}</th>
+	                        <th>#{msg.labelValor}</th>
+	                        <th>#{msg.labelSaldo}</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <ui:repeat var="h" value="#{conta.listaMovimentacoes}">
+							<tr>
+								<td align="center">
+									<h:outputText value="#{h.createdAt}" >
+					              		<f:convertDateTime pattern="dd/MM/yyyy" />
+					 				</h:outputText>
+					 			</td>
+								<td align="center" >#{h.descricao}</td>
+								<td align="center" >#{h.valor}</td>
+								
+								<td align="center">
+									#{h.saldo}
+								</td>
+							</tr>
+						</ui:repeat>
+	                </tbody>
+	            </table>
+	        </div>
+		</ui:define>
+	</ui:composition>
+</html>

@@ -1,0 +1,70 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:composition template="inicio.xhtml" >
+		<ui:define name="conteudo">
+			<div class="saldo">
+           	 #{msg.labelSaldoAtual} R$ #{conta.saldoCorrente}
+        	</div>
+        
+         <div class="ultimosLancamentos">
+            <span>Adicionar Conta</span>
+            <div class="form">
+            	<h:messages style="color:#ff0000;"/>
+                <label>
+                     #{msg.labelNome}:
+                    <h:inputText value="#{transferencia.favorito.apelido}"/>
+                </label>
+                <label>
+                   #{msg.labelAgencia}:
+                    <h:inputText value="#{transferencia.favorito.conta.agencia}"/>
+                </label>
+                <label>
+                	 #{msg.labelConta}:
+                    <h:inputText value="#{transferencia.favorito.conta.conta}"/>
+                </label>
+                <label>
+                    CPF:
+                    <h:inputText value="#{transferencia.favorito.cpf}"/>
+                </label>
+                <label>
+                     #{msg.labelTipoConta}:
+                   	 <h:selectOneMenu value="#{transferencia.idTipoConta}">  
+						<f:selectItems value="#{transferencia.teste}"/>  
+					</h:selectOneMenu> 
+                </label>
+				<h:commandButton value="#{msg.labelCadastrar}" action="#{transferencia.cadastrar}"/>
+             </div>
+       	 	</div>
+       	 	
+       	 	<div class="ultimosLancamentos">
+            <span>#{msg.labelContasCadastradas}:</span>
+            <table class="stripped">
+                <thead>
+                    <tr>
+                        <th>#{msg.labelNome}</th>
+                        <th>#{msg.labelConta}</th>
+                        <th>#{msg.labelTipoConta}</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <!-- essa primeira linha sempre existira eh a poupanca vinculada a conta corrente dele  -->
+                <ui:repeat var="h" value="#{transferencia.listaFavoritos}">
+                    <tr>
+                        <td>#{h.apelido}</td>
+                        <td>#{h.conta.agencia} #{h.conta.conta}</td>
+                        <td>#{h.tipoConta.descricao}</td>
+                        <td><h:commandLink value="#{msg.labelTransferir}" action="#{transferencia.buscarFavorito(h.id)}" /> |    <h:commandLink value="#{msg.labelExcluir}" action="#{transferencia.excluirFavorito(h.id)}" /></td>
+                    </tr>
+				</ui:repeat>
+               </tbody>
+            </table>
+
+        </div>
+		</ui:define>
+	</ui:composition>
+</html>

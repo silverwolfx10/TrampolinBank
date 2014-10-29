@@ -3,17 +3,17 @@ package br.com.trampolinbank.bean;
 import java.sql.Date;
 
 public class Conta {
-	private Integer 	id;
-	private Usuario		usuario;
-	private String 		agencia;
-	private String 		conta;
-	private TipoConta	tipo_conta;
-	private String 		password;
-	private Float		saldo_poupanca;
-	private Float 		saldo_corrente;
-	private Integer		status;
-	private Date		created_at;
-	private Date 		updated_at;
+	protected Integer 	id;
+	protected Usuario		usuario;
+	protected String 		agencia;
+	protected String 		conta;
+	protected TipoConta	tipo_conta;
+	protected String 		password;
+	protected Float		saldo_poupanca;
+	protected Float 		saldo_corrente;
+	protected Integer		status;
+	protected Date		created_at;
+	protected Date 		updated_at;
 	
 	public Integer getId() {
 		return id;
@@ -63,7 +63,6 @@ public class Conta {
 	public void setSaldoCorrente(Float saldo_corrente) {
 		this.saldo_corrente = saldo_corrente;
 	}
-	
 	public Integer getStatus() {
 		return status;
 	}

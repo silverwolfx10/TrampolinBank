@@ -9,14 +9,16 @@ public class TipoConta {
 	public Integer getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public TipoConta setId(Integer id) {
 		this.id = id;
+		return this;
 	}
 	public String getDescricao() {
 		return descricao;
 	}
-	public void setDescricao(String descricao) {
+	public TipoConta setDescricao(String descricao) {
 		this.descricao = descricao;
+		return this;
 	}
 	
 }
