@@ -15,11 +15,11 @@
              <h:form  prependId="false">
                 <label >
                      #{msg.labelCalendarioDe} :<h:message for="calendarioDe" style="color:red;"></h:message> 
-                    <h:inputText id="calendarioDe" value="#{comprovante.dataInicio}" required="true" requiredMessage="*Campo obrigatório!"/>
+                    <h:inputText id="calendarioDe" value="#{comprovante.dataInicio}" required="true" requiredMessage="*#{msg.labelCampoObrig}"/>
                 </label>
                 <label style="width:48%;">
                     #{msg.labelCalendarioAte} :<h:message for="calendarioAte" style="color:red;"></h:message>
-                    <h:inputText id="calendarioAte" value="#{comprovante.dataFim}" required="true" requiredMessage="*Campo obrigatório!"/>
+                    <h:inputText id="calendarioAte" value="#{comprovante.dataFim}" required="true" requiredMessage="*#{msg.labelCampoObrig}"/>
                 </label>
 
                 <h:commandButton value="#{msg.labelBuscar}" action="#{comprovante.filtrar}"/>

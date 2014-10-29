@@ -17,25 +17,25 @@
             	<h:messages style="color:#ff0000;"/>
                 <label>
                      #{msg.labelNome}:
-                     <h:inputText id="nome" value="#{transferencia.favorito.apelido}" class="form-control" required="true" requiredMessage="*Campo nome é obrigatório!"/><br/>
+                     <h:inputText id="nome" value="#{transferencia.favorito.apelido}" class="form-control" required="true" requiredMessage="*#{msg.labelNomeObrig}"/><br/>
                 </label>
                 <label>
                    #{msg.labelAgencia}:
- 				<h:inputText id="Agencia" value="#{transferencia.favorito.conta.agencia}" class="form-control" required="true" validatorMessage="A agencia deve conter 4 digitos" converterMessage="*No campo agencia só é permitido números." requiredMessage="*Campo  agencia é obrigatório!">
+ 				<h:inputText id="Agencia" value="#{transferencia.favorito.conta.agencia}" class="form-control" required="true" validatorMessage="#{msg.labelAgenciaDeve}" converterMessage="*#{msg.labelPermitdoAgenciaNumeros}" requiredMessage="*#{msg.labelCampoAgenciaObrig}">
 					<f:validateLength minimum="4" maximum="4"/>
 					<f:convertNumber integerOnly="true" /> 
 				</h:inputText><br/>
                 </label>
                 <label>
                 	 #{msg.labelConta}:
-                    <h:inputText id="Conta" value="#{transferencia.favorito.conta.conta}" class="form-control" required="true" validatorMessage="A conta deve conter 5 digitos" converterMessage="*No campo conta só é permitido números." requiredMessage="*Campo  conta é obrigatório!">
+                    <h:inputText id="Conta" value="#{transferencia.favorito.conta.conta}" class="form-control" required="true" validatorMessage="#{msg.labelContaDeve}" converterMessage="*#{msg.labelPermitdoContaNumeros}" requiredMessage="*#{msg.labelCampoContaObrig}">
 					<f:validateLength minimum="5" maximum="5"/>
 					<f:convertNumber integerOnly="true" /> 
 					</h:inputText><br/>
                 </label>
                 <label>
                     CPF:
-                    <h:inputText id="CPF" value="#{transferencia.favorito.cpf}" class="form-control" required="true" validatorMessage="O CPF deve conter 11 digitos" converterMessage="*No campo CPF só é permitido números." requiredMessage="*Campo  CPF é obrigatório!">
+                    <h:inputText id="CPF" value="#{transferencia.favorito.cpf}" class="form-control" required="true" validatorMessage="#{msg.labelCpfDeve}" converterMessage="*#{msg.labelPermitdoCpfNumeros}" requiredMessage="*#{msg.labelCampoCpfObrig}">
 					<f:validateLength minimum="11" maximum="11"/>
 					<f:convertNumber integerOnly="true" /> 
 					</h:inputText><br/>

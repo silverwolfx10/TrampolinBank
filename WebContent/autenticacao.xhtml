@@ -40,7 +40,7 @@
     	#{msg.labelConta}: #{conta.conta}<br/>
     	
          #{msg.labelSenha}:<h:message for="senha" style="color:red;"></h:message> 
-		<h:inputSecret id="senha" value="#{conta.password}" class="form-control" required="true" requiredMessage="*Campo senha é obrigatório!"/>
+		<h:inputSecret id="senha" value="#{conta.password}" class="form-control" required="true" requiredMessage="*#{msg.labelCampoSenhaObrigatorio}"/>
     </label>
     <h:commandButton value="#{msg.labelEntrar}" action="#{conta.autenticar}"/>
 </div>

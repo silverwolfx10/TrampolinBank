@@ -19,7 +19,7 @@
 	            <h:messages style="color:#ff0000;"/>
 	                <label>
 	                    #{msg.labelValor}:
-	                   <h:inputText id="valor" value="#{transferencia.movimentacao.valor}" class="form-control" required="true" validatorMessage="*O valor deve ser maior que zero." converterMessage="*No campo Valor só é permitido números." requiredMessage="*Campo Valor é obrigatório!">
+	                   <h:inputText id="valor" value="#{transferencia.movimentacao.valor}" class="form-control" required="true" validatorMessage="*#{msg.labelMaiorZero}" converterMessage="*#{msg.labelValorSomenteNum}" requiredMessage="*#{msg.labelValorObrigatorio}">
 					   <f:validateLength minimum="1"/>
 					   <f:convertNumber minFractionDigits="2" /> 
 					   <f:validateLongRange minimum="1"/>
@@ -28,12 +28,12 @@
 	              
 	                <label>
 	                    #{msg.labelSenha}
-	                    <!-- puxa dados do banco, dependedo da operacao tem uma taxa a ser calculada -->
-	                    <h:inputSecret id="senha" value="#{transferencia.conta.password}" class="form-control" required="true" requiredMessage="*Campo senha é obrigatório!"/>
+	                   
+	                    <h:inputSecret id="senha" value="#{transferencia.conta.password}" class="form-control" required="true" requiredMessage="*#{msg.labelCampoSenhaObrigatorio}"/>
 	                </label>
 	                <label>
 	                    #{msg.labelAgendarPara}:
-	                    <!-- puxa dados do banco, dependedo da operacao tem uma taxa a ser calculada -->
+	              
 	                    <h:inputText id="calendarioDe" value="#{transferencia.dataAgendamento}"/>
 	                </label>
 					<label>
