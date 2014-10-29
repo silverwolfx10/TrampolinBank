@@ -75,7 +75,7 @@ public class ExtratoManegedBean extends Movimentacao
     
     try
     {
-      this.listaMovimentacao = dao.listar(contaLogada.getId(),dhCadastroDe,dhCadastroAte);
+      this.listaMovimentacao = dao.listarByDateInterval(contaLogada.getId(),dhCadastroDe,dhCadastroAte);
     }
     catch (Exception e)
     {

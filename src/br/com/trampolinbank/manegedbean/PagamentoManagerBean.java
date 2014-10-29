@@ -30,10 +30,11 @@ public class PagamentoManagerBean {
 		if(new ContaDAO().autenticar(contaLogada.getAgencia(), contaLogada.getConta(), senha)!=null){
 			
 			Movimentacao movimentacao = new Movimentacao();
-			movimentacao.setConta(contaLogada);
+
+			movimentacao.setContaOrigem(contaLogada);
 			movimentacao.setDescricao("Pagamento do Boleto: "+codigoBarras);
 			movimentacao.setValor(valor);
-			movimentacao.setTipoConta(new TipoConta().setId(1));
+
 			
 			if(contaLogada.getTipoConta().getId() == 1){
 				contaLogada.setSaldoCorrente(contaLogada.getSaldoCorrente()-valor);
@@ -51,7 +52,9 @@ public class PagamentoManagerBean {
 			new MovimentacaoDAO().incluir(movimentacao);
 		}
 		
+
 		return "sucesso";
+
 	}
 	
 	public String agendar() throws ParseException{
@@ -69,7 +72,9 @@ public class PagamentoManagerBean {
 		
 		new AgendaDAO().incluir(agenda);
 		
+
 		return "sucesso";
+
 	}
 	
 	

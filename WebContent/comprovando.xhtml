@@ -1,0 +1,29 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core">
+
+<h2>Trampolin Bank</h2>
+<h3>Comprovante : #{comprovante.movimentacao.descricao}</h3>
+<span>
+	Data:
+	<h:outputText value="#{comprovante.movimentacao.createdAt}" >
+          		<f:convertDateTime pattern="dd/MM/yyyy" />
+	</h:outputText>
+</span><br /><br />
+<span>------------------------------------------------------------------------------------------------</span><br /><br />
+
+
+<!-- se foi transferencia -->
+<span>Agencia: #{comprovante.movimentacao.contaDestino.agencia} </span><br />
+<span>Conta: #{comprovante.movimentacao.contaDestino.conta}</span><br />
+
+<!-- se for boleto -->
+<span>#{comprovante.movimentacao.descricao}</span><br /><br />
+
+<span>------------------------------------------------------------------------------------------------</span><br /><br />
+
+<span>Valor: R$#{comprovante.movimentacao.valor}</span><br />
+
+</html>

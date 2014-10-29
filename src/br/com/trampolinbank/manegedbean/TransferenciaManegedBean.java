@@ -57,7 +57,7 @@ public class TransferenciaManegedBean {
 		
 		new AgendaDAO().incluir(agenda);
 		
-		return "sucesso";
+		return "inicio";
 	}
 	
 	public String transferir(){
@@ -81,13 +81,9 @@ public class TransferenciaManegedBean {
 				contaBenefConta.setSaldoPoupanca(contaBenefConta.getSaldoPoupanca()+movimentacao.getValor());
 			new ContaDAO().editar(contaBenefConta);
 			
-			movimentacao.setConta(contaLogada);
+			movimentacao.setContaOrigem(contaLogada);
+			movimentacao.setContaDestino(favorito.getConta());
 			movimentacao.setDescricao("Transfer�ncia para"+favorito.getConta().getAgencia()+" "+favorito.getConta().getConta());
-			movimentacao.setTipoConta(new TipoConta().setId(favorito.getTipoConta().getId()));
-			if(movimentacao.getTipoConta().getId() == 1)
-				movimentacao.setSaldo(contaLogada.getSaldoCorrente());
-			else
-				movimentacao.setSaldo(contaLogada.getSaldoPoupanca());
 			
 			new MovimentacaoDAO().incluir(movimentacao);
 		}

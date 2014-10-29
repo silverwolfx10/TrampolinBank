@@ -7,21 +7,21 @@
 	<ui:composition template="inicio.xhtml" >
 		<ui:define name="conteudo">
 			<div class="saldo">
-            Saldo Atual: R$ 1.500,00
-        </div>
+           	 #{msg.labelSaldoAtual} R$ #{conta.saldoCorrente}
+        	</div>
         <div class="ultimosLancamentos">
             <span>Consulta comprovantes</span>
             <div class="form">
                 <label >
-                    Inicio:
-                    <input type="text" />
+                    Data Inicio:
+                    <h:inputText value="#{comprovante.dataInicio}"/>
                 </label>
                 <label>
                     Até:
-                    <input type="text" />
+                    <h:inputText value="#{comprovante.dataFim}"/>
                 </label>
 
-                <input type="submit" value="Consultar" />
+                <h:commandButton value="Buscar" action="#{comprovante.filtrar}"/>
 
             </div>
 
@@ -40,24 +40,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>10/08/2014</td>
-                        <td>Transferência para 205151-5</td>
-                        <td>R$ 1500,00</td>
-                        <td><a target="blank" href="comprovando.html">Ver Comprovante</a></td>
-                    </tr>
-                    <tr>
-                        <td>10/08/2014</td>
-                        <td>Transferência para 205151-5</td>
-                        <td>R$ 1500,00</td>
-                        <td><a target="blank" href="comprovando.html">Ver Comprovante</a></td>
-                    </tr>
-                    <tr>
-                        <td>10/08/2014</td>
-                        <td>Transferência para 205151-5</td>
-                        <td>R$ 1500,00</td>
-                        <td><a target="blank" href="comprovando.html">Ver Comprovante</a></td>
-                    </tr>
+                     <ui:repeat var="h" value="#{comprovante.listaMovimentacoes}">
+						<tr>
+							<td align="center">
+								<h:outputText value="#{h.createdAt}" >
+				              		<f:convertDateTime pattern="dd/MM/yyyy" />
+				 				</h:outputText>
+				 			</td>
+							<td align="center" >#{h.descricao}</td>
+							<td align="center" >#{h.valor}</td>
+							
+							<td>
+								<h:commandLink target="blank" value="Ver Comprovante" action="#{comprovante.abrirComprovante(h.id)}" />
+							</td>
+						</tr>
+					</ui:repeat>
 
                 </tbody>
             </table>

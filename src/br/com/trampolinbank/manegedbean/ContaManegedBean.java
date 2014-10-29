@@ -1,6 +1,8 @@
 package br.com.trampolinbank.manegedbean;
 
 
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -29,7 +31,7 @@ public class ContaManegedBean extends Conta{
 	private List<Movimentacao> listaMovimentacoes;
 	
 	
-	public void initialize(){
+	public void initialize() throws SQLException, ParseException{
 		Conta contaLogada = (Conta) ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().getAttribute("contaLogada");
 	
 		if(contaLogada != null){
@@ -53,7 +55,7 @@ public class ContaManegedBean extends Conta{
 		return pagRet;
 	}
 	
-	public String autenticar(){
+	public String autenticar() throws SQLException, ParseException{
 		
 		String 	pagRet = "login";
 		
