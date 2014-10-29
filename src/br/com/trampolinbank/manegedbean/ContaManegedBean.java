@@ -26,7 +26,7 @@ import br.com.trampolinbrank.dao.MovimentacaoDAO;
 @SessionScoped
 public class ContaManegedBean extends Conta{
 	
-	private String erro = "";
+	private String erro = null;
 	private Movimentacao movimentacao = null;
 	private List<Movimentacao> listaMovimentacoes;
 	
@@ -44,19 +44,19 @@ public class ContaManegedBean extends Conta{
 	}
 	
 	public String logar(){
-		
+		erro = null;
 		String 	pagRet = "login";
 		
 		usuario  = new ContaDAO().logar(agencia,conta);
 
 		if(usuario != null)pagRet = "autenticacao";
-		else erro = "Conta nao encontrada, por gentileza tente novamente.";
+		else erro = "1";
 		
 		return pagRet;
 	}
 	
 	public String autenticar() throws SQLException, ParseException{
-		
+		erro = null;
 		String 	pagRet = "login";
 		
 		Conta contaLogada  = null;
@@ -75,7 +75,7 @@ public class ContaManegedBean extends Conta{
 		if(contaLogada != null){
 			pagRet = "inicio";
 		}else {
-			erro = "Senha invalida!";
+			erro = "2";
 			pagRet = "autenticacao";
 		}
 		
@@ -88,6 +88,7 @@ public class ContaManegedBean extends Conta{
 	}
 	
 	public String alterarTipoConta() throws SQLException, ParseException{
+		erro = null;
 		Conta contaLogada = (Conta) ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().getAttribute("contaLogada");
 		contaLogada = new ContaDAO().inverteConta(contaLogada.getAgencia(),contaLogada.getConta(),contaLogada.getTipoConta().getId());
 		

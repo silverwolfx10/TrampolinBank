@@ -15,6 +15,11 @@
             <div class="form">
             <h:form id="AdicionarConta" prependId="false">
             	<h:messages style="color:#ff0000;"/>
+            	<span  style="color:red">
+            		<b>
+	            	 <h:outputText rendered="#{transferencia.erro != null}" value="#{msg.labelContaNaoEnc}" /> 
+	                </b>
+                </span>
                 <label>
                      #{msg.labelNome}:
                      <h:inputText id="nome" value="#{transferencia.favorito.apelido}" class="form-control" required="true" requiredMessage="*#{msg.labelNomeObrig}"/><br/>

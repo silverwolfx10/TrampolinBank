@@ -89,7 +89,7 @@ public class ExtratoManegedBean extends Movimentacao
 		FacesContext context = FacesContext.getCurrentInstance();
 		
 		if((!dhCadastroDe.equals("") && dhCadastroAte.equals("")) || (!dhCadastroAte.equals("") && dhCadastroDe.equals("")) ){
-			context.addMessage(null,new FacesMessage("Para realizar uma busca por periodo, Eh necessario preencher as duas datas!"));
+//			context.addMessage(null,new FacesMessage("Para realizar uma busca por periodo, Eh necessario preencher as duas datas!"));
 			return null;
 		}else if(!dhCadastroDe.equals("") && !dhCadastroAte.equals("")){
 			Date de = new Date(dhCadastroDe);
@@ -98,7 +98,7 @@ public class ExtratoManegedBean extends Movimentacao
 			if(de.getTime() <= ate.getTime())
 				this.dhCadastroDe = dhCadastroDe;
 			else{
-				context.addMessage(null,new FacesMessage("A data do campo 'Ate:' nao pode ser menor que a data do campo 'De:'"));
+//				context.addMessage(null,new FacesMessage("A data do campo 'Ate:' nao pode ser menor que a data do campo 'De:'"));
 				return null;
 			}
 		}

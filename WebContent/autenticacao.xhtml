@@ -31,7 +31,10 @@
 <h:form>
 
 <div class="login">
- <span  style="color:red"><b>#{conta.erro}</b></span><br/>
+ <span  style="color:red"><b>
+ 
+ <h:outputText rendered="#{conta.erro != null}" value="#{msg.labelSenhaIncorreta}" /> 
+ </b></span><br/>
      <label>
        <h3>#{msg.labelBoasVindas} #{conta.usuario.nomeCompleto}!</h3>
     </label>

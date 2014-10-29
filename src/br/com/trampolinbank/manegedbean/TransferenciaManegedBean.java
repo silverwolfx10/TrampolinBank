@@ -32,6 +32,7 @@ public class TransferenciaManegedBean {
 	
 	private Favoritos favorito = new Favoritos();
 	private List<Favoritos> listaFavoritos;
+	private String erro = null;
 	
 	private List<TipoConta> tipoContas;
 	private Collection teste = new ArrayList<TipoConta>();
@@ -41,6 +42,16 @@ public class TransferenciaManegedBean {
 	private Agenda agenda = new Agenda();
 	private Conta conta = new Conta();
 	
+	
+	
+	public String getErro() {
+		return erro;
+	}
+
+	public void setErro(String erro) {
+		this.erro = erro;
+	}
+
 	private String dataAgendamento;
 	
 	public String agendar() throws ParseException{
@@ -52,7 +63,7 @@ public class TransferenciaManegedBean {
 		
 		agenda.setAgendado(data);
 		agenda.setConta(contaLogada);
-		agenda.setDescricao("Transferênncia para"+favorito.getConta().getAgencia()+" "+favorito.getConta().getConta());
+		agenda.setDescricao("Transferï¿½ncia para"+favorito.getConta().getAgencia()+" "+favorito.getConta().getConta());
 		agenda.setValor(movimentacao.getValor());
 		
 		new AgendaDAO().incluir(agenda);
@@ -83,7 +94,7 @@ public class TransferenciaManegedBean {
 			
 			movimentacao.setContaOrigem(contaLogada);
 			movimentacao.setContaDestino(favorito.getConta());
-			movimentacao.setDescricao("Transferência para"+favorito.getConta().getAgencia()+" "+favorito.getConta().getConta());
+			movimentacao.setDescricao("Transferï¿½ncia para"+favorito.getConta().getAgencia()+" "+favorito.getConta().getConta());
 			if(contaLogada.getTipoConta().getId() == 1)
 				movimentacao.setSaldo(contaLogada.getSaldoCorrente());
 			else
@@ -108,6 +119,7 @@ public class TransferenciaManegedBean {
 	public String cadastrar(){
 		
 		FacesContext context = FacesContext.getCurrentInstance();
+		erro = null;
 		
 		Conta contaLogada = (Conta) ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().getAttribute("contaLogada");
 		favorito.setUsuario(contaLogada.getUsuario());
@@ -119,7 +131,8 @@ public class TransferenciaManegedBean {
 			favorito.setTipoConta(new TipoConta().setId(idTipoConta));
 			new FavoritosDAO().incluir(favorito);
 		}else{
-			context.addMessage(null,new FacesMessage("Conta nï¿½o encontrada!"));
+			erro = "Conta nï¿½o encontrada!";
+//			context.addMessage(null,new FacesMessage("Conta nï¿½o encontrada!"));
 			return null;
 		}
 		return atualizaLista();

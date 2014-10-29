@@ -29,7 +29,11 @@
 <h:form>
 
 <div class="login">
-    <span  style="color:red"><b>#{conta.erro}</b></span><br/>
+    <span  style="color:red"><b>
+  
+    <h:outputText rendered="#{conta.erro != null}" value="#{msg.labelContaNaoEnc}" /> 
+    
+    </b></span><br/>
     <label>
         #{msg.labelAgencia}:
         <h:inputText value="#{conta.agencia}"/>
