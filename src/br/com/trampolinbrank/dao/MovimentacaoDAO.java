@@ -102,11 +102,12 @@ public class MovimentacaoDAO {
 public List<Movimentacao> listar(Integer conta_id, String dataDe, String dataAte)  throws SQLException, ParseException{
 		
 		Connection conn = ConnectionFactory.getConnection();
+		ArrayList<Movimentacao> movimentacao = new ArrayList<Movimentacao>();
 		
 		String sql = "select * from movimentacao where conta_id =? ";
 
-		if(dataDe != null && !dataDe.equals("") && dataAte != null && !dataAte.equals(""))
-			sql += " and created_at > ? and created_at < ? ";
+		if(dataDe != null && !dataDe.equals("") && dataAte != null && !dataAte.equals("")){
+			sql += " and created_at >= ? and created_at <= ? ";
 		
 		sql += "order by created_at";
 		
@@ -126,7 +127,7 @@ public List<Movimentacao> listar(Integer conta_id, String dataDe, String dataAte
 		}
 		
 		ResultSet rs = stmt.executeQuery();
-		ArrayList<Movimentacao> movimentacao = new ArrayList<Movimentacao>();
+		
 		
 		while(rs.next()){
 			Movimentacao m = new Movimentacao();
@@ -150,6 +151,7 @@ public List<Movimentacao> listar(Integer conta_id, String dataDe, String dataAte
 		}
 		
 		conn.close();
+		}
 		
 		return movimentacao;
 	}

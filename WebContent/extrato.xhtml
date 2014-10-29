@@ -11,17 +11,18 @@
 	        <div class="ultimosLancamentos">
 	            <span>Consulta extrato</span>
 	            <div class="form">
-	                <label >
-	                    Inicio:
-	                    <input id="calendarioDe" type="text" />
-	                </label>
-	                <label>
-	                    Até:
-	                    <input id="calendarioAte" type="text" />
-	                </label>
-	
-	                <input type="submit" value="Consultar" />
-	
+		           
+		                <label >
+		                    Inicio:
+		                    <h:inputText id="calendarioDe" value="#{extrato.dhCadastroDe}"  />
+		                </label>
+		                <label>
+		                    Até:
+		                    <h:inputText id="calendarioAte" value="#{extrato.dhCadastroAte}" />
+		                </label>
+		
+		                <h:commandButton value="#{msg.btnBuscar}" action="#{extrato.atualizar}" />
+					
 	            </div>
 	
 	        </div>
@@ -39,7 +40,7 @@
 	                    </tr>
 	                </thead>
 	                <tbody>
-	 	            <ui:repeat var="h" value="#{conta.listaMovimentacoes}">
+	 	            <ui:repeat var="h" value="#{extrato.listaMovimentacao}">
 							<tr>
 								<td align="center">
 									<h:outputText value="#{h.createdAt}" >
