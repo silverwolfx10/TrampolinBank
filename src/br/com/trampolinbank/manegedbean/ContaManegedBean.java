@@ -50,7 +50,7 @@ public class ContaManegedBean extends Conta{
 		usuario  = new ContaDAO().logar(agencia,conta);
 
 		if(usuario != null)pagRet = "autenticacao";
-		else erro = "Conta não encontrada, por gentileza tente novamente.";
+		else erro = "Conta nao encontrada, por gentileza tente novamente.";
 		
 		return pagRet;
 	}
@@ -74,7 +74,7 @@ public class ContaManegedBean extends Conta{
 		
 		if(usuario != null){
 			pagRet = "inicio";
-		}else erro = "Senha inválida!";
+		}else erro = "Senha invalida!";
 		
 		return pagRet;
 	}

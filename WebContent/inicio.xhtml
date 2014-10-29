@@ -37,8 +37,7 @@ $(function() {
        
        <h:commandLink value="#{msg.labelIrParaPoupanca}" action="#{conta.alterarTipoConta()}" rendered="#{conta.tipoConta.id == 1}"/>
        <h:commandLink value="#{msg.labelIrParaContaCorrente}" action="#{conta.alterarTipoConta()}" rendered="#{conta.tipoConta.id == 2}"/>
-        &nbsp;<span  style="color:red"><b>#{conta.erro}</b></span><br/>
-    </div>
+         </div>
     <div class="menuLateral">
         <a href="lstHistorico.xhtml">#{msg.labelConsultaSaldo}</a>
         <a href="transferencia.xhtml">#{msg.labelTransferencia}</a>

@@ -11,26 +11,30 @@
 	        </div>
 	        
 	         <div class="ultimosLancamentos">
-	            <span>Traferindo para: #{h.apelido}</span>
+	            <span> #{msg.labelTransPara}: #{h.apelido}</span>
 	            <div class="form">
 	                <label>
-	                    Valor:
-	                     <h:inputText value="#{transferencia.movimentacao.valor}"/>
+	                    #{msg.labelValor}:
+	                   <h:inputText id="valor" value="#{transferencia.movimentacao.valor}" class="form-control" required="true" validatorMessage="*O valor deve ser maior que zero." converterMessage="*No campo Valor só é permitido números." requiredMessage="*Campo Valor é obrigatório!">
+					   <f:validateLength minimum="1"/>
+					   <f:convertNumber minFractionDigits="2" /> 
+					   <f:validateLongRange minimum="1"/>
+				       </h:inputText><br/>
 	                </label>
 	              
 	                <label>
-	                    Senha:
+	                    #{msg.labelSenha}
 	                    <!-- puxa dados do banco, dependedo da operacao tem uma taxa a ser calculada -->
-	                    <h:inputSecret value="#{transferencia.conta.password}"/>
+	                    <h:inputSecret id="senha" value="#{transferencia.conta.password}" class="form-control" required="true" requiredMessage="*Campo senha é obrigatório!"/>
 	                </label>
 	                <label>
-	                    Data Agendamento:
+	                    #{msg.labelAgendarPara}:
 	                    <!-- puxa dados do banco, dependedo da operacao tem uma taxa a ser calculada -->
-	                    <h:inputText value="#{transferencia.dataAgendamento}"/>
+	                    <h:inputText id="calendarioDe" value="#{transferencia.dataAgendamento}"/>
 	                </label>
 					<label>
-	                   <h:commandButton value="Agendar" action="#{transferencia.agendar}" style="margin-right:5px;"/>
-	                   <h:commandButton value="Transferir" action="#{transferencia.transferir}"/>
+	                   <h:commandButton value="#{msg.labelAgendar}" action="#{transferencia.agendar}" style="margin-right:5px;"/>
+	                   <h:commandButton value="#{msg.labelTransferir}" action="#{transferencia.transferir}"/>
 	                </label>
 	                
 	

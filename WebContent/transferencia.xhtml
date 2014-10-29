@@ -11,8 +11,9 @@
 	        </div>
         
          <div class="ultimosLancamentos">
-            <span>Adicionar Conta</span>
+            <span> #{msg.labelAdicionarConta}</span>
             <div class="form">
+            <h:form id="AdicionarConta" prependId="false">
             	<h:messages style="color:#ff0000;"/>
                 <label>
                      #{msg.labelNome}:
@@ -46,8 +47,10 @@
 					</h:selectOneMenu> 
                 </label>
 				<h:commandButton value="#{msg.labelCadastrar}" action="#{transferencia.cadastrar}"/>
+				</h:form>
              </div>
        	 	</div>
+     
        	 	
        	 	<div class="ultimosLancamentos">
             <span>#{msg.labelContasCadastradas}:</span>
@@ -62,14 +65,18 @@
                 </thead>
                 <tbody>
                 <!-- essa primeira linha sempre existira eh a poupanca vinculada a conta corrente dele  -->
+    
                 <ui:repeat var="h" value="#{transferencia.listaFavoritos}">
+
                     <tr>
                         <td>#{h.apelido}</td>
                         <td>#{h.conta.agencia} #{h.conta.conta}</td>
                         <td>#{h.tipoConta.descricao}</td>
                         <td><h:commandLink value="#{msg.labelTransferir}" action="#{transferencia.buscarFavorito(h.id)}" /> |    <h:commandLink value="#{msg.labelExcluir}" action="#{transferencia.excluirFavorito(h.id)}" /></td>
                     </tr>
+
 				</ui:repeat>
+				
                </tbody>
             </table>
 

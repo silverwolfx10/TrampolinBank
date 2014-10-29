@@ -10,18 +10,18 @@
 	            #{msg.labelSaldoAtual} R$: <h:outputLabel value="#{conta.saldoCorrente}" rendered="#{conta.tipoConta.id == 1}"/> <h:outputLabel value="#{conta.saldoPoupanca}" rendered="#{conta.tipoConta.id == 2}" />
 	        </div>
         <div class="ultimosLancamentos">
-            <span>Consulta comprovantes</span>
+            <span>#{msg.labelConsultaComprovantes}</span>
             <div class="form">
                 <label >
-                    Data Inicio:<h:message for="calendarioDe" style="color:red;"></h:message> 
+                     #{msg.labelCalendarioDe} :<h:message for="calendarioDe" style="color:red;"></h:message> 
                     <h:inputText id="calendarioDe" value="#{comprovante.dataInicio}" required="true" requiredMessage="*Campo obrigatório!"/>
                 </label>
                 <label style="width:48%;">
-                    Até:<h:message for="calendarioAte" style="color:red;"></h:message>
+                    #{msg.labelCalendarioAte} :<h:message for="calendarioAte" style="color:red;"></h:message>
                     <h:inputText id="calendarioAte" value="#{comprovante.dataFim}" required="true" requiredMessage="*Campo obrigatório!"/>
                 </label>
 
-                <h:commandButton value="Buscar" action="#{comprovante.filtrar}"/>
+                <h:commandButton value="#{msg.labelBuscar}" action="#{comprovante.filtrar}"/>
 
             </div>
 
@@ -29,13 +29,13 @@
 
 
         <div class="ultimosLancamentos">
-            <span>Comprovantes</span>
+            <span>#{msg.labelComprovantes}</span>
             <table class="stripped">
                 <thead>
                     <tr>
-                        <th>Data</th>
-                        <th>Lançamento</th>
-                        <th>Valor</th>
+                        <th>#{msg.labelData}</th>
+	                    <th>#{msg.labelLancamento}</th>
+	                    <th>#{msg.labelValor}</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -51,7 +51,7 @@
 							<td align="center" >#{h.valor}</td>
 							
 							<td>
-								<h:commandLink target="blank" value="Ver Comprovante" action="#{comprovante.abrirComprovante(h.id)}" />
+								<h:commandLink target="blank" value="#{msg.labelVerComprovante}" action="#{comprovante.abrirComprovante(h.id)}" />
 							</td>
 						</tr>
 					</ui:repeat>

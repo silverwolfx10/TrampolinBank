@@ -5,9 +5,9 @@
 		xmlns:f="http://java.sun.com/jsf/core">
 
 <h2>Trampolin Bank</h2>
-<h3>Comprovante : #{comprovante.movimentacao.descricao}</h3>
+<h3>#{msg.labelComprovante} : #{comprovante.movimentacao.descricao}</h3>
 <span>
-	Data:
+	#{msg.labelData}
 	<h:outputText value="#{comprovante.movimentacao.createdAt}" >
           		<f:convertDateTime pattern="dd/MM/yyyy" />
 	</h:outputText>
@@ -16,14 +16,14 @@
 
 
 <!-- se foi transferencia -->
-<span>Agencia: #{comprovante.movimentacao.contaDestino.agencia} </span><br />
-<span>Conta: #{comprovante.movimentacao.contaDestino.conta}</span><br />
+<span>#{msg.labelAgencia}: #{comprovante.movimentacao.contaDestino.agencia} </span><br />
+<span>#{msg.labelConta}: #{comprovante.movimentacao.contaDestino.conta}</span><br />
 
 <!-- se for boleto -->
 <span>#{comprovante.movimentacao.descricao}</span><br /><br />
 
 <span>------------------------------------------------------------------------------------------------</span><br /><br />
 
-<span>Valor: R$#{comprovante.movimentacao.valor}</span><br />
+<span>#{msg.labelValor}: R$#{comprovante.movimentacao.valor}</span><br />
 
 </html>
