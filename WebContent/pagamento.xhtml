@@ -16,11 +16,11 @@
 		            <h:messages style="color:#ff0000;"/>
 		                <label class="codigodebarras">
 		                    #{msg.labelCodigoDeBarras}:
-		                    <h:inputText id="barras" value="#{pagamento.codigoBarras}" class="form-control" required="true" validatorMessage="#{msg.labelBarrasDeve}" converterMessage="*#{msg.labelBarraSomenteNumero}" requiredMessage="*#{msg.labelBarraObrigatoria}">
-							<f:validateLength minimum="10" maximum="10"/>
+		                    <h:inputText id="barras" value="#{pagamento.codigoBarras}" class="form-control" required="true" validatorMessage="#{msg.labelBarrasDeve}" converterMessage="*#{msg.labelBarraSomenteNumero}" requiredMessage="*#{msg.labelBarraObrigatoria}" validator="#{pagamento.validaBarras}" >
 							<f:convertNumber integerOnly="true" /> 
 							<f:validateLongRange minimum="1"/>
-					        </h:inputText><br/>
+					        </h:inputText>
+					        <h:message for="barras" /><br/>
 		                </label>
 		                <label>
 		                    #{msg.labelValor}:

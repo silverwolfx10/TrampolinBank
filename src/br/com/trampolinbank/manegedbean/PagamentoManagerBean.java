@@ -5,8 +5,12 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.bind.ValidationException;
 
 import br.com.trampolinbank.bean.Agenda;
 import br.com.trampolinbank.bean.Conta;
@@ -75,6 +79,14 @@ public class PagamentoManagerBean {
 
 		return "sucesso";
 
+	}
+	
+	public void validaBarras(FacesContext context, UIComponent component, Integer value){
+		
+		if(value < 1000000000 || value > 1099999999){
+			FacesMessage message = new FacesMessage("boleto invalido");
+			throw new ValidatorException(message);
+		}
 	}
 	
 	
