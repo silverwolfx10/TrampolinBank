@@ -72,9 +72,12 @@ public class ContaManegedBean extends Conta{
 			if(this.id != 0) listaMovimentacoes = new MovimentacaoDAO().listar(contaLogada.getId());
 		}
 		
-		if(usuario != null){
+		if(contaLogada != null){
 			pagRet = "inicio";
-		}else erro = "Senha invalida!";
+		}else {
+			erro = "Senha invalida!";
+			pagRet = "autenticacao";
+		}
 		
 		return pagRet;
 	}
@@ -93,7 +96,7 @@ public class ContaManegedBean extends Conta{
 			this.populaObj(contaLogada);
 			listaMovimentacoes = new MovimentacaoDAO().listar(contaLogada.getId());
 		}else{
-			erro = "Usuario não possui outra conta disponível!";
+			erro = "Usuario nï¿½o possui outra conta disponï¿½vel!";
 		}
 		
 		return "inicio";
