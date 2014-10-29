@@ -65,7 +65,7 @@
                 </thead>
                 <tbody>
                 <!-- essa primeira linha sempre existira eh a poupanca vinculada a conta corrente dele  -->
-    
+    			<h:form prependId="false">
                 <ui:repeat var="h" value="#{transferencia.listaFavoritos}">
 
                     <tr>
@@ -76,6 +76,7 @@
                     </tr>
 
 				</ui:repeat>
+				</h:form>
 				
                </tbody>
             </table>

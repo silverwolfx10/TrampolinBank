@@ -12,35 +12,37 @@
 	        <div class="ultimosLancamentos">
 	            <span>#{msg.labelPagamentoDeContas}</span>
 	            <div class="form">
-	            <h:messages style="color:#ff0000;"/>
-	                <label class="codigodebarras">
-	                    #{msg.labelCodigoDeBarras}:
-	                    <h:inputText id="barras" value="#{pagamento.codigoBarras}" class="form-control" required="true" validatorMessage="O código de Barras deve conter 10 digitos" converterMessage="*No código de Barras só é permitido números." requiredMessage="*código de Barras  é obrigatório!">
-						<f:validateLength minimum="10" maximum="10"/>
-						<f:convertNumber integerOnly="true" /> 
-						<f:validateLongRange minimum="1"/>
-				        </h:inputText><br/>
-	                </label>
-	                <label>
-	                    #{msg.labelValor}:
-	                   <h:inputText id="valor" value="#{pagamento.valor}" class="form-control" required="true" validatorMessage="*O valor deve ser maior que zero." converterMessage="*No campo proposta só é permitido números." requiredMessage="*Campo proposta é obrigatório!">
-					   <f:validateLength minimum="1"/>
-					   <f:convertNumber minFractionDigits="2" /> 
-					   <f:validateLongRange minimum="1"/>
-				       </h:inputText><br/>
-	                </label>
-	                <label>
-	                    #{msg.labelAgendarPara}:
-	                    <h:inputText id="calendarioDe" value="#{pagamento.dataAgendamento}"  />
-	                </label>
-	                <label>
-	                    #{msg.labelSenha}:
-	                    <h:inputSecret id="senha" value="#{pagamento.senha}" class="form-control" required="true" requiredMessage="*Campo senha é obrigatório!"/>
-	                </label>
-	                <label>
-						<h:commandButton value="#{msg.labelAgendar}" action="#{pagamento.agendar}" style="margin-right:5px;"/>
-	                	<h:commandButton value="#{msg.labelRealizarPagamento}" action="#{pagamento.pagarConta}"/>
-					</label>
+	            <h:form  prependId="false">
+		            <h:messages style="color:#ff0000;"/>
+		                <label class="codigodebarras">
+		                    #{msg.labelCodigoDeBarras}:
+		                    <h:inputText id="barras" value="#{pagamento.codigoBarras}" class="form-control" required="true" validatorMessage="O código de Barras deve conter 10 digitos" converterMessage="*No código de Barras só é permitido números." requiredMessage="*código de Barras  é obrigatório!">
+							<f:validateLength minimum="10" maximum="10"/>
+							<f:convertNumber integerOnly="true" /> 
+							<f:validateLongRange minimum="1"/>
+					        </h:inputText><br/>
+		                </label>
+		                <label>
+		                    #{msg.labelValor}:
+		                   <h:inputText id="valor" value="#{pagamento.valor}" class="form-control" required="true" validatorMessage="*O valor deve ser maior que zero." converterMessage="*No campo proposta só é permitido números." requiredMessage="*Campo proposta é obrigatório!">
+						   <f:validateLength minimum="1"/>
+						   <f:convertNumber minFractionDigits="2" /> 
+						   <f:validateLongRange minimum="1"/>
+					       </h:inputText><br/>
+		                </label>
+		                <label>
+		                    #{msg.labelAgendarPara}:
+		                    <h:inputText id="calendarioDe" value="#{pagamento.dataAgendamento}"  />
+		                </label>
+		                <label>
+		                    #{msg.labelSenha}:
+		                    <h:inputSecret id="senha" value="#{pagamento.senha}" class="form-control" required="true" requiredMessage="*Campo senha é obrigatório!"/>
+		                </label>
+		                <label>
+							<h:commandButton value="#{msg.labelAgendar}" action="#{pagamento.agendar}" style="margin-right:5px;"/>
+		                	<h:commandButton value="#{msg.labelRealizarPagamento}" action="#{pagamento.pagarConta}"/>
+						</label>
+					</h:form>
 	            </div>
 
         </div>

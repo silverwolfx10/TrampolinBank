@@ -16,11 +16,16 @@
 
 
 <!-- se foi transferencia -->
-<span>#{msg.labelAgencia}: #{comprovante.movimentacao.contaDestino.agencia} </span><br />
-<span>#{msg.labelConta}: #{comprovante.movimentacao.contaDestino.conta}</span><br />
+<h:outputText rendered="#{comprovante.movimentacao.contaDestino.agencia != null}" value="#{msg.labelAgencia}: #{comprovante.movimentacao.contaDestino.agencia} " /> <br />
+<h:outputText rendered="#{comprovante.movimentacao.contaDestino.conta != null}" value="#{msg.labelConta}: #{comprovante.movimentacao.contaDestino.conta}" /> <br />
+
+
 
 <!-- se for boleto -->
-<span>#{comprovante.movimentacao.descricao}</span><br /><br />
+<h:outputText rendered="#{!(comprovante.movimentacao.contaDestino.conta != null)}" value="#{comprovante.movimentacao.descricao}" /> 
+<br /><br />
+
+
 
 <span>------------------------------------------------------------------------------------------------</span><br /><br />
 

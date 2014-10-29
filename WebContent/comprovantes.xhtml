@@ -12,6 +12,7 @@
         <div class="ultimosLancamentos">
             <span>#{msg.labelConsultaComprovantes}</span>
             <div class="form">
+             <h:form  prependId="false">
                 <label >
                      #{msg.labelCalendarioDe} :<h:message for="calendarioDe" style="color:red;"></h:message> 
                     <h:inputText id="calendarioDe" value="#{comprovante.dataInicio}" required="true" requiredMessage="*Campo obrigatório!"/>
@@ -22,7 +23,7 @@
                 </label>
 
                 <h:commandButton value="#{msg.labelBuscar}" action="#{comprovante.filtrar}"/>
-
+				</h:form>
             </div>
 
         </div>
@@ -40,6 +41,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                 <h:form  prependId="false">
                      <ui:repeat var="h" value="#{comprovante.listaMovimentacoes}">
 						<tr>
 							<td align="center">
@@ -55,7 +57,7 @@
 							</td>
 						</tr>
 					</ui:repeat>
-
+					</h:form>
                 </tbody>
             </table>
 

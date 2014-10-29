@@ -26,10 +26,10 @@ $(function() {
 </script>
 </head>
 <h:body>
-<h:form prependId="false">
 
 <div class="content">
     <div class="topo">
+    <h:form prependId="false">
        <span>
            #{msg.labelBoasVindas} #{conta.usuario.nomeCompleto}!
        </span>
@@ -37,13 +37,16 @@ $(function() {
        
        <h:commandLink value="#{msg.labelIrParaPoupanca}" action="#{conta.alterarTipoConta()}" rendered="#{conta.tipoConta.id == 1}"/>
        <h:commandLink value="#{msg.labelIrParaContaCorrente}" action="#{conta.alterarTipoConta()}" rendered="#{conta.tipoConta.id == 2}"/>
-         </div>
+    </h:form>
+    </div>
     <div class="menuLateral">
+    <h:form prependId="false">
         <a href="lstHistorico.xhtml">#{msg.labelConsultaSaldo}</a>
         <a href="transferencia.xhtml">#{msg.labelTransferencia}</a>
         	<h:commandLink value="#{msg.labelPagarConta}" action="pagamento.xhtml" rendered="#{conta.tipoConta.id == 1}"/>
         <a href="extrato.xhtml">#{msg.labelExtrato}</a>
         <a href="comprovantes.xhtml">#{msg.labelComprovantes}</a>
+        </h:form>
     </div>
     <div class="conteudo">
      	<ui:insert name="conteudo">
@@ -85,6 +88,5 @@ $(function() {
 
 </div>
 
-</h:form>
 </h:body>
 </html>
