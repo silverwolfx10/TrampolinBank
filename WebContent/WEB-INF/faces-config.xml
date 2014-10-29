@@ -20,6 +20,11 @@
 		<managed-bean-class>br.com.trampolinbank.manegedbean.PagamentoManagerBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>extrato</managed-bean-name>
+		<managed-bean-class>br.com.trampolinbank.manegedbean.ExtratoManegedBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<application>
 		<resource-bundle>
 			<base-name>br.com.trampolinbank.messages.messages</base-name>

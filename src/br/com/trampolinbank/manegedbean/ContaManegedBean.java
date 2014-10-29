@@ -36,8 +36,9 @@ public class ContaManegedBean extends Conta{
 			Conta conta = new ContaDAO().get(contaLogada.getId());
 			this.populaObj(conta);
 			
+			listaMovimentacoes = new MovimentacaoDAO().listar(contaLogada.getId());
 		}
-		listaMovimentacoes = new MovimentacaoDAO().listar();
+		
 	}
 	
 	public String logar(){
@@ -60,7 +61,7 @@ public class ContaManegedBean extends Conta{
 		((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().setAttribute("contaLogada",contaLogada);
 		this.populaObj(contaLogada);
 		
-		if(this.id != 0) listaMovimentacoes = new MovimentacaoDAO().listar();
+		if(this.id != 0) listaMovimentacoes = new MovimentacaoDAO().listar(contaLogada.getId());
 		
 		if(usuario != null)pagRet = "inicio";
 		else erro = "Senha inv�	lida!";
