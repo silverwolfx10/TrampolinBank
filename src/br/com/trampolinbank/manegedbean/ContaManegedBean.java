@@ -97,7 +97,7 @@ public class ContaManegedBean extends Conta{
 			this.populaObj(contaLogada);
 			listaMovimentacoes = new MovimentacaoDAO().listar(contaLogada.getId());
 		}else{
-			erro = "Usuario n�o possui outra conta dispon�vel!";
+//			erro = "Usuario n�o possui outra conta dispon�vel!";
 		}
 		
 		return "inicio";
