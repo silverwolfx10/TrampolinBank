@@ -19,8 +19,14 @@ public class ComprovanteManegedBean {
 	private Movimentacao movimentacao;
 	
 	public String filtrar(){
-		return "oi";
+		 Conta contaLogada = (Conta) ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().getAttribute("contaLogada");
+		try {
+			this.listaMovimentacoes = new MovimentacaoDAO().listarByDateInterval(contaLogada.getId(),dataInicio,dataFim);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		
+		return "comprovantes";
 	}
 	
 	public String abrirComprovante(int id){
@@ -48,8 +54,11 @@ public class ComprovanteManegedBean {
 	}
 
 	public List<Movimentacao> getListaMovimentacoes() throws SQLException, ParseException {
-		Conta contaLogada = (Conta) ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().getAttribute("contaLogada");
-		listaMovimentacoes = new MovimentacaoDAO().listar(contaLogada.getId());
+		if(listaMovimentacoes ==null){
+			Conta contaLogada = (Conta) ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().getAttribute("contaLogada");
+			listaMovimentacoes = new MovimentacaoDAO().listar(contaLogada.getId());
+		}
+		
 		return listaMovimentacoes;
 	}
 

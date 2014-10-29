@@ -6,22 +6,22 @@
 		<ui:composition template="inicio.xhtml" >
 			<ui:define name="conteudo">
 				<div class="saldo">
-	            #{msg.labelSaldoAtual} R$ #{conta.saldoCorrente}
+	            #{msg.labelSaldoAtual} R$: <h:outputLabel value="#{conta.saldoCorrente}" rendered="#{conta.tipoConta.id == 1}"/> <h:outputLabel value="#{conta.saldoPoupanca}" rendered="#{conta.tipoConta.id == 2}" />
 	        </div>
 	        <div class="ultimosLancamentos">
 	            <span>Consulta extrato</span>
 	            <div class="form">
 		           
 		                <label >
-		                    Inicio:
-		                    <h:inputText id="calendarioDe" value="#{extrato.dhCadastroDe}"  />
+		                    Inicio:<h:message for="calendarioDe" style="color:red;"></h:message> 
+		                    <h:inputText id="calendarioDe" value="#{extrato.dhCadastroDe}" required="true" requiredMessage="*Campo obrigatório!" />
 		                </label>
-		                <label>
-		                    Até:
-		                    <h:inputText id="calendarioAte" value="#{extrato.dhCadastroAte}" />
+		                <label style="width:48%;" >
+		                    Até:<h:message for="calendarioAte" style="color:red;"></h:message> 
+		                    <h:inputText id="calendarioAte" value="#{extrato.dhCadastroAte}" required="true" requiredMessage="*Campo obrigatório!" />
 		                </label>
 		
-		                <h:commandButton value="#{msg.btnBuscar}" action="#{extrato.atualizar}" />
+		                <h:commandButton value="Buscar" action="#{extrato.atualizar}" />
 					
 	            </div>
 	

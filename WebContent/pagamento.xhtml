@@ -7,26 +7,35 @@
 	<ui:composition template="inicio.xhtml" >
 		<ui:define name="conteudo">
 			<div class="saldo">
-	            #{msg.labelSaldoAtual} R$ #{conta.saldoCorrente}
+	            #{msg.labelSaldoAtual} R$: <h:outputLabel value="#{conta.saldoCorrente}" rendered="#{conta.tipoConta.id == 1}"/> <h:outputLabel value="#{conta.saldoPoupanca}" rendered="#{conta.tipoConta.id == 2}" />
 	        </div>
 	        <div class="ultimosLancamentos">
 	            <span>Pagamento de contas</span>
 	            <div class="form">
+	            <h:messages style="color:#ff0000;"/>
 	                <label class="codigodebarras">
 	                    Código de barras:
-	                    <h:inputText value="#{pagamento.codigoBarras}"/>
+	                    <h:inputText id="barras" value="#{pagamento.codigoBarras}" class="form-control" required="true" validatorMessage="O código de Barras deve conter 10 digitos" converterMessage="*No código de Barras só é permitido números." requiredMessage="*código de Barras  é obrigatório!">
+						<f:validateLength minimum="10" maximum="10"/>
+						<f:convertNumber integerOnly="true" /> 
+						<f:validateLongRange minimum="1"/>
+				        </h:inputText><br/>
 	                </label>
 	                <label>
 	                    Confirmar valor:
-	                   <h:inputText value="#{pagamento.valor}"/>
+	                   <h:inputText id="valor" value="#{pagamento.valor}" class="form-control" required="true" validatorMessage="*O valor deve ser maior que zero." converterMessage="*No campo proposta só é permitido números." requiredMessage="*Campo proposta é obrigatório!">
+					   <f:validateLength minimum="1"/>
+					   <f:convertNumber minFractionDigits="2" /> 
+					   <f:validateLongRange minimum="1"/>
+				       </h:inputText><br/>
 	                </label>
 	                <label>
 	                    Agendar para:
-	                    <h:inputText value="#{pagamento.dataAgendamento}"/>
+	                    <h:inputText id="calendarioDe" value="#{pagamento.dataAgendamento}"  />
 	                </label>
 	                <label>
 	                    Senha:
-	                    <h:inputSecret value="#{pagamento.senha}"/>
+	                    <h:inputSecret id="senha" value="#{pagamento.senha}" class="form-control" required="true" requiredMessage="*Campo senha é obrigatório!"/>
 	                </label>
 	                <label>
 						<h:commandButton value="Agendar" action="#{pagamento.agendar}" style="margin-right:5px;"/>

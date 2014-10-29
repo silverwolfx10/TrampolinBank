@@ -210,12 +210,15 @@ public List<Movimentacao> listarByDateInterval(Integer conta_id, String dataDe, 
 	Connection conn = ConnectionFactory.getConnection();
 	ArrayList<Movimentacao> movimentacao = new ArrayList<Movimentacao>();
 	
-	String sql = "select * from movimentacao where conta_id =? ";
+	String sql = "select * from movimentacao movi "
+			+ "inner join conta cont1 on cont1.id=movi.conta_origem_id "
+			+ "left join conta cont2 on cont2.id=movi.conta_destino_id "
+			+ "where conta_origem_id = ?";
 
 	if(dataDe != null && !dataDe.equals("") && dataAte != null && !dataAte.equals("")){
-		sql += " and created_at >= ? and created_at <= ? ";
+		sql += " and movi.created_at >= ? and movi.created_at <= ? ";
 	
-	sql += "order by created_at";
+	sql += "order by movi.created_at";
 	
 	PreparedStatement stmt = conn.prepareStatement(sql);
 
@@ -264,6 +267,7 @@ public List<Movimentacao> listarByDateInterval(Integer conta_id, String dataDe, 
 	
 	return movimentacao;
 }
+
 public List<Movimentacao> listar(Integer conta_id)  throws SQLException, ParseException{
 	Connection conn = null;
 	Movimentacao m = null;
@@ -271,12 +275,10 @@ public List<Movimentacao> listar(Integer conta_id)  throws SQLException, ParseEx
 	try {
 	 conn = ConnectionFactory.getConnection();
 	
-	
-	String sql = "select * from movimentacao where conta_id =? ";
-
-	
-	
-	sql += "order by created_at limit 5";
+	String sql = "select * from movimentacao movi "
+			+ "inner join conta cont1 on cont1.id=movi.conta_origem_id "
+			+ "left join conta cont2 on cont2.id=movi.conta_destino_id "
+			+ "where conta_origem_id = ? order by movi.created_at desc limit 5";
 	
 	PreparedStatement stmt = conn.prepareStatement(sql);
 
@@ -305,7 +307,7 @@ public List<Movimentacao> listar(Integer conta_id)  throws SQLException, ParseEx
 		
 		m.setDescricao(rs.getString("descricao"));
 		
-		m.setCreatedAt(rs.getDate("created_at"));
+		m.setCreatedAt(rs.getDate("movi.created_at"));
 		movimentacao.add(m);
 	}
 	

@@ -7,18 +7,18 @@
 	<ui:composition template="inicio.xhtml" >
 		<ui:define name="conteudo">
 			<div class="saldo">
-           	 #{msg.labelSaldoAtual} R$ #{conta.saldoCorrente}
-        	</div>
+	            #{msg.labelSaldoAtual} R$: <h:outputLabel value="#{conta.saldoCorrente}" rendered="#{conta.tipoConta.id == 1}"/> <h:outputLabel value="#{conta.saldoPoupanca}" rendered="#{conta.tipoConta.id == 2}" />
+	        </div>
         <div class="ultimosLancamentos">
             <span>Consulta comprovantes</span>
             <div class="form">
                 <label >
-                    Data Inicio:
-                    <h:inputText value="#{comprovante.dataInicio}"/>
+                    Data Inicio:<h:message for="calendarioDe" style="color:red;"></h:message> 
+                    <h:inputText id="calendarioDe" value="#{comprovante.dataInicio}" required="true" requiredMessage="*Campo obrigatório!"/>
                 </label>
-                <label>
-                    Até:
-                    <h:inputText value="#{comprovante.dataFim}"/>
+                <label style="width:48%;">
+                    Até:<h:message for="calendarioAte" style="color:red;"></h:message>
+                    <h:inputText id="calendarioAte" value="#{comprovante.dataFim}" required="true" requiredMessage="*Campo obrigatório!"/>
                 </label>
 
                 <h:commandButton value="Buscar" action="#{comprovante.filtrar}"/>

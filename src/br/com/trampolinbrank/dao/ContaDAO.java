@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import br.com.trampolinbank.bean.Conta;
 import br.com.trampolinbank.bean.TipoConta;
@@ -154,6 +155,59 @@ public class ContaDAO {
 		
 		return conta;
 	}
+	
+	public ArrayList<Conta>buscarContas(String agencia, String numConta, String password) {
+		
+		ArrayList<Conta> contas = new ArrayList<Conta>();
+		Connection conn = null;
+		
+		try {
+			conn = ConnectionFactory.getConnection();
+			
+			String sql = "select * from conta cont inner join usuario user on cont.id_usuario = user.id "
+					+ "inner join tipo_conta tpco on tpco.id = cont.tipo_conta where agencia = ? and conta = ? and password = ? order by cont.tipo_conta";
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			
+			stmt.setString(1, agencia);
+			stmt.setString(2, numConta);
+			stmt.setString(3, password);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()){
+				Conta conta = new Conta();
+				conta.setAgencia(rs.getString("agencia"));
+				conta.setConta(rs.getString("conta"));
+				conta.setId(rs.getInt("cont.id"));
+				conta.setSaldoCorrente(rs.getFloat("saldo_corrente"));
+				conta.setSaldoPoupanca(rs.getFloat("saldo_poupanca"));
+				conta.setStatus(rs.getInt("cont.status"));
+				conta.setTipoConta(new TipoConta().setId(rs.getInt("tipo_conta")).setDescricao(rs.getString("descricao")));
+				
+				//buidando usuario
+				Usuario usuario = new Usuario().setNomeCompleto(rs.getString("nome_completo"))
+											   .setId(rs.getInt("id_usuario"))
+											   .setEmail(rs.getString("email"))
+											   .setIdade(rs.getInt("idade"))
+											   .setStatus(rs.getInt("user.status"));
+				
+				conta.setUsuario(usuario);
+				contas.add(conta);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}finally{
+			try {
+				conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		
+		return contas;
+	}
 
 	public Conta buscar(String agencia, String numConta) {
 		
@@ -255,7 +309,108 @@ public class ContaDAO {
 		return conta;
 	}
 
+	public Conta inverteConta(String agencia, String conta, Integer id) {
+		
+		Conta contaInversa = null;
+		Connection conn = null;
+		
+		try {
+			conn = ConnectionFactory.getConnection();
+			
+			String sql = "select * from conta cont inner join usuario user on cont.id_usuario = user.id inner join tipo_conta tpco on tpco.id = cont.tipo_conta where agencia = ? and conta = ? and tipo_conta != ?";
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			
+			stmt.setString(1,agencia);
+			stmt.setString(2,conta);
+			stmt.setInt(3, id);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()){
+				contaInversa = new Conta();
+				contaInversa.setAgencia(rs.getString("agencia"));
+				contaInversa.setConta(rs.getString("conta"));
+				contaInversa.setId(rs.getInt("cont.id"));
+				contaInversa.setSaldoCorrente(rs.getFloat("saldo_corrente"));
+				contaInversa.setSaldoPoupanca(rs.getFloat("saldo_poupanca"));
+				contaInversa.setStatus(rs.getInt("cont.status"));
+				contaInversa.setTipoConta(new TipoConta().setId(rs.getInt("tipo_conta")).setDescricao(rs.getString("descricao")));
+				
+				//buidando usuario
+				Usuario usuario = new Usuario().setNomeCompleto(rs.getString("nome_completo"))
+											   .setId(rs.getInt("id_usuario"))
+											   .setEmail(rs.getString("email"))
+											   .setIdade(rs.getInt("idade"))
+											   .setStatus(rs.getInt("user.status"));
+				
+				contaInversa.setUsuario(usuario);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}finally{
+			try {
+				conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		
+		return contaInversa;
+		
+	}
 
+	public Conta buscarParaTransferencia(String agencia, String numConta,int tipoConta) {
+		
+		Conta conta = null;
+		Connection conn = null;
+		
+		try {
+			conn = ConnectionFactory.getConnection();
+			
+			String sql = "select * from conta cont inner join usuario user on cont.id_usuario = user.id inner join tipo_conta tpco on tpco.id = cont.tipo_conta where agencia = ? and conta = ? and cont.tipo_conta=?";
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			
+			stmt.setString(1, agencia);
+			stmt.setString(2, numConta);
+			stmt.setInt(3, tipoConta);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()){
+				conta = new Conta();
+				conta.setAgencia(rs.getString("agencia"));
+				conta.setConta(rs.getString("conta"));
+				conta.setId(rs.getInt("cont.id"));
+				conta.setSaldoCorrente(rs.getFloat("saldo_corrente"));
+				conta.setSaldoPoupanca(rs.getFloat("saldo_poupanca"));
+				conta.setStatus(rs.getInt("cont.status"));
+				conta.setTipoConta(new TipoConta().setId(rs.getInt("tipo_conta")).setDescricao(rs.getString("descricao")));
+				
+				//buidando usuario
+				Usuario usuario = new Usuario().setNomeCompleto(rs.getString("nome_completo"))
+											   .setId(rs.getInt("id_usuario"))
+											   .setEmail(rs.getString("email"))
+											   .setIdade(rs.getInt("idade"))
+											   .setStatus(rs.getInt("user.status"));
+				
+				conta.setUsuario(usuario);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}finally{
+			try {
+				conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		
+		return conta;
+	}
 	
 	
 }

@@ -33,23 +33,22 @@ $(function() {
        <span>
            #{msg.labelBoasVindas} #{conta.usuario.nomeCompleto}!
        </span>
-    	<h:commandLink value="#{msg.labelSair}" action="#{conta.logout()}" />&nbsp;
-       
-       <h:commandLink value="#{msg.labelIrParaPoupanca}" action="#{conta.alterarTipoConta()}" rendered="#{conta.tipoConta.id == 1}"/>
-       <h:commandLink value="#{msg.labelIrParaContaCorrente}" action="#{conta.alterarTipoConta()}" rendered="#{conta.tipoConta.id == 2}"/>
-        &nbsp;<span  style="color:red"><b>#{conta.erro}</b></span><br/>
+    	<h:commandLink value="#{msg.labelSair}" action="#{conta.logout()}" />
+        <a href="#" class="poupanca">
+             #{msg.labelIrParaContaCorrente}
+        </a>
     </div>
     <div class="menuLateral">
         <a href="lstHistorico.xhtml">#{msg.labelConsultaSaldo}</a>
         <a href="transferencia.xhtml">#{msg.labelTransferencia}</a>
-        	<h:commandLink value="#{msg.labelPagarConta}" action="pagamento.xhtml" rendered="#{conta.tipoConta.id == 1}"/>
         <a href="extrato.xhtml">#{msg.labelExtrato}</a>
         <a href="comprovantes.xhtml">#{msg.labelComprovantes}</a>
+
     </div>
     <div class="conteudo">
      	<ui:insert name="conteudo">
 	     	<div class="saldo">
-	            #{msg.labelSaldoAtual} R$: <h:outputLabel value="#{conta.saldoCorrente}" rendered="#{conta.tipoConta.id == 1}"/> <h:outputLabel value="#{conta.saldoPoupanca}" rendered="#{conta.tipoConta.id == 2}" />
+	            #{msg.labelSaldoAtual} R$ #{conta.saldo}
 	        </div>
  			<div class="ultimosLancamentos">
 	            <span> #{msg.labelUltimosLancamentos}</span>

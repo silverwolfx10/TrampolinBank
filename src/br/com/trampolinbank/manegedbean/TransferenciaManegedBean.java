@@ -52,7 +52,7 @@ public class TransferenciaManegedBean {
 		
 		agenda.setAgendado(data);
 		agenda.setConta(contaLogada);
-		agenda.setDescricao("Transferï¿½ncia para"+favorito.getConta().getAgencia()+" "+favorito.getConta().getConta());
+		agenda.setDescricao("Transferênncia para"+favorito.getConta().getAgencia()+" "+favorito.getConta().getConta());
 		agenda.setValor(movimentacao.getValor());
 		
 		new AgendaDAO().incluir(agenda);
@@ -83,8 +83,22 @@ public class TransferenciaManegedBean {
 			
 			movimentacao.setContaOrigem(contaLogada);
 			movimentacao.setContaDestino(favorito.getConta());
-			movimentacao.setDescricao("Transferï¿½ncia para"+favorito.getConta().getAgencia()+" "+favorito.getConta().getConta());
+			movimentacao.setDescricao("Transferência para"+favorito.getConta().getAgencia()+" "+favorito.getConta().getConta());
+			if(contaLogada.getTipoConta().getId() == 1)
+				movimentacao.setSaldo(contaLogada.getSaldoCorrente());
+			else
+				movimentacao.setSaldo(contaLogada.getSaldoPoupanca());
+			new MovimentacaoDAO().incluir(movimentacao);
 			
+			movimentacao.setContaOrigem(favorito.getConta());
+			movimentacao.setContaDestino(contaLogada);
+			movimentacao.setDescricao("Recebido de "+contaLogada.getAgencia()+" "+contaLogada.getConta());
+			
+			Conta contaAux = new ContaDAO().buscarParaTransferencia(favorito.getConta().getAgencia(),favorito.getConta().getConta(),favorito.getTipoConta().getId());
+			if(contaAux.getTipoConta().getId() == 1)
+				movimentacao.setSaldo(contaAux.getSaldoCorrente());
+			else
+				movimentacao.setSaldo(contaAux.getSaldoPoupanca());
 			new MovimentacaoDAO().incluir(movimentacao);
 		}
 		

@@ -50,7 +50,7 @@ public class ContaManegedBean extends Conta{
 		usuario  = new ContaDAO().logar(agencia,conta);
 
 		if(usuario != null)pagRet = "autenticacao";
-		else erro = "Conta nï¿½o encontrada, por gentileza tente novamente.";
+		else erro = "Conta não encontrada, por gentileza tente novamente.";
 		
 		return pagRet;
 	}
@@ -59,21 +59,45 @@ public class ContaManegedBean extends Conta{
 		
 		String 	pagRet = "login";
 		
-		Conta contaLogada  = new ContaDAO().autenticar(agencia,conta,password);
-		((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().setAttribute("contaLogada",contaLogada);
-		this.populaObj(contaLogada);
+		Conta contaLogada  = null;
 		
-		if(this.id != 0) listaMovimentacoes = new MovimentacaoDAO().listar(contaLogada.getId());
+		ArrayList<Conta> constas = new ContaDAO().buscarContas(agencia,conta,password);
 		
-		if(usuario != null)pagRet = "inicio";
-		else erro = "Senha invï¿½	lida!";
+		if(constas.size() > 0){
+			contaLogada = constas.get(0);
+			
+			((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().setAttribute("contaLogada",contaLogada);
+			this.populaObj(constas.get(0));
+			
+			if(this.id != 0) listaMovimentacoes = new MovimentacaoDAO().listar(contaLogada.getId());
+		}
+		
+		if(usuario != null){
+			pagRet = "inicio";
+		}else erro = "Senha inválida!";
+		
 		return pagRet;
-		
 	}
 	
 	public String logout(){
 		((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().setAttribute("contaLogada",null);
 		return "login";
+	}
+	
+	public String alterarTipoConta() throws SQLException, ParseException{
+		Conta contaLogada = (Conta) ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().getAttribute("contaLogada");
+		contaLogada = new ContaDAO().inverteConta(contaLogada.getAgencia(),contaLogada.getConta(),contaLogada.getTipoConta().getId());
+		
+		if(contaLogada != null){
+			((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().setAttribute("contaLogada",contaLogada);
+			this.populaObj(contaLogada);
+			listaMovimentacoes = new MovimentacaoDAO().listar(contaLogada.getId());
+		}else{
+			erro = "Usuario não possui outra conta disponível!";
+		}
+		
+		return "inicio";
+		
 	}
 	
 	private void populaObj(Conta contaLogada) {
