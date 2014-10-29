@@ -21,8 +21,8 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>comprovante</managed-bean-name>
-		<managed-bean-class>br.com.trampolinbank.manegedbean.ComprovanteManegedBean</managed-bean-class>
+		<managed-bean-name>extrato</managed-bean-name>
+		<managed-bean-class>br.com.trampolinbank.manegedbean.ExtratoManegedBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<application>

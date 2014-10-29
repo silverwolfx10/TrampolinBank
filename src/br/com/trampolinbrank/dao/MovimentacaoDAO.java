@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -140,6 +143,64 @@ public class MovimentacaoDAO {
 		}
 		
 		return m;
+	}
+	
+public List<Movimentacao> listar(Integer conta_id, String dataDe, String dataAte)  throws SQLException, ParseException{
+		
+		Connection conn = ConnectionFactory.getConnection();
+		
+		String sql = "select * from movimentacao where conta_id =? ";
+
+		if(dataDe != null && !dataDe.equals("") && dataAte != null && !dataAte.equals(""))
+			sql += " and created_at > ? and created_at < ? ";
+		
+		sql += "order by created_at";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+
+		stmt.setInt(1, conta_id);
+		
+		if(dataDe != null && !dataDe.equals("") && dataAte != null && !dataAte.equals("")){
+			
+			DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");  
+			java.sql.Date de = new java.sql.Date(fmt.parse(dataDe).getTime());
+			java.sql.Date ate = new java.sql.Date(fmt.parse(dataAte).getTime());
+			
+			stmt.setDate(2, new java.sql.Date(de.getTime()));
+			
+			stmt.setDate(3, new java.sql.Date(ate.getTime()));
+		}
+		
+		ResultSet rs = stmt.executeQuery();
+		ArrayList<Movimentacao> movimentacao = new ArrayList<Movimentacao>();
+		
+		while(rs.next()){
+			Movimentacao m = new Movimentacao();
+			m.setId(rs.getInt("id"));
+			m.setValor(rs.getFloat("valor"));
+			m.setSaldo(rs.getFloat("saldo"));
+			
+			Conta contaOrigem = new Conta();
+			contaOrigem.setId(rs.getInt("conta_origem_id"));
+			contaOrigem.setAgencia(rs.getString("cont1.agencia"));
+			contaOrigem.setConta(rs.getString("cont1.conta"));
+			m.setContaOrigem(contaOrigem);
+			
+			Conta contaDestino = new Conta();
+			contaDestino.setId(rs.getInt("conta_destino_id"));
+			contaDestino.setAgencia(rs.getString("cont2.agencia"));
+			contaDestino.setConta(rs.getString("cont2.conta"));
+			m.setContaDestino(contaDestino);
+			
+			m.setDescricao(rs.getString("descricao"));
+			
+			m.setCreatedAt(rs.getDate("created_at"));
+			movimentacao.add(m);
+		}
+		
+		conn.close();
+		
+		return movimentacao;
 	}
 		
 }

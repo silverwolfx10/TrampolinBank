@@ -1,14 +1,18 @@
 package br.com.trampolinbank.manegedbean;
 
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.Application;
 import javax.faces.application.ViewHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
 
 import br.com.trampolinbank.bean.Conta;
@@ -24,6 +28,19 @@ public class ContaManegedBean extends Conta{
 	private Movimentacao movimentacao = null;
 	private List<Movimentacao> listaMovimentacoes;
 	
+	
+	public void initialize(){
+		Conta contaLogada = (Conta) ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().getAttribute("contaLogada");
+	
+		if(contaLogada != null){
+			Conta conta = new ContaDAO().get(contaLogada.getId());
+			this.populaObj(conta);
+			
+			listaMovimentacoes = new MovimentacaoDAO().listar(contaLogada.getId());
+		}
+		
+	}
+	
 	public String logar(){
 		
 		String 	pagRet = "login";
@@ -31,7 +48,7 @@ public class ContaManegedBean extends Conta{
 		usuario  = new ContaDAO().logar(agencia,conta);
 
 		if(usuario != null)pagRet = "autenticacao";
-		else erro = "Conta não encontrada, por gentileza tente novamente.";
+		else erro = "Conta nï¿½o encontrada, por gentileza tente novamente.";
 		
 		return pagRet;
 	}
@@ -47,7 +64,7 @@ public class ContaManegedBean extends Conta{
 		if(this.id != 0) listaMovimentacoes = new MovimentacaoDAO().listar(contaLogada.getId());
 		
 		if(usuario != null)pagRet = "inicio";
-		else erro = "Senha inválida!";
+		else erro = "Senha invï¿½	lida!";
 		return pagRet;
 		
 	}
@@ -93,14 +110,14 @@ public class ContaManegedBean extends Conta{
 		this.listaMovimentacoes = listaMovimentacoes;
 	}
 
-	public String atualiza() {
-		Conta contaLogada = (Conta) ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().getAttribute("contaLogada");
-		refresh();
-		populaObj(contaLogada);
-		this.saldo_corrente = 1.1f;
-		//if(this.id != 0) listaMovimentacoes = new MovimentacaoDAO().listar();
-		return "inicio";
-	}
+//	public String atualiza() {
+//		Conta contaLogada = (Conta) ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().getAttribute("contaLogada");
+//		refresh();
+//		populaObj(contaLogada);
+//		this.saldo_corrente = 1.1f;
+//		if(this.id != 0) listaMovimentacoes = new MovimentacaoDAO().listar();
+//		return "inicio";
+//	}
 	
 	public void refresh() {  
         FacesContext context = FacesContext.getCurrentInstance();  

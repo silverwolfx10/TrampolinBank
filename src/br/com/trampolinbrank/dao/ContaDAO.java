@@ -205,6 +205,56 @@ public class ContaDAO {
 		return conta;
 	}
 
+	public Conta get(Integer id) {
+
+		Conta conta = null;
+		Connection conn = null;
+		
+		try {
+			conn = ConnectionFactory.getConnection();
+			
+			String sql = "select * from conta cont inner join usuario user on cont.id_usuario = user.id inner join tipo_conta tpco on tpco.id = cont.tipo_conta where cont.id = ?";
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			
+			stmt.setInt(1, id);
+			
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()){
+				conta = new Conta();
+				conta.setAgencia(rs.getString("agencia"));
+				conta.setConta(rs.getString("conta"));
+				conta.setId(rs.getInt("cont.id"));
+				conta.setSaldoCorrente(rs.getFloat("saldo_corrente"));
+				conta.setSaldoPoupanca(rs.getFloat("saldo_poupanca"));
+				conta.setStatus(rs.getInt("cont.status"));
+				conta.setTipoConta(new TipoConta().setId(rs.getInt("tipo_conta")).setDescricao(rs.getString("descricao")));
+				
+				//buidando usuario
+				Usuario usuario = new Usuario().setNomeCompleto(rs.getString("nome_completo"))
+											   .setId(rs.getInt("id_usuario"))
+											   .setEmail(rs.getString("email"))
+											   .setIdade(rs.getInt("idade"))
+											   .setStatus(rs.getInt("user.status"));
+				
+				conta.setUsuario(usuario);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}finally{
+			try {
+				conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		
+		return conta;
+	}
+
 	
 	
 }

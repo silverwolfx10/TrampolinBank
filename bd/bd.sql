@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `trampolin_bank` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `trampolin_bank`;
--- MySQL dump 10.13  Distrib 5.5.38, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
 --
--- Host: 127.0.0.1    Database: trampolin_bank
+-- Host: localhost    Database: trampolin_bank
 -- ------------------------------------------------------
--- Server version	5.5.38-0ubuntu0.14.04.1
+-- Server version	5.6.16
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -32,7 +32,7 @@ CREATE TABLE `agenda` (
   `agendado` datetime NOT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `agenda` (
 
 LOCK TABLES `agenda` WRITE;
 /*!40000 ALTER TABLE `agenda` DISABLE KEYS */;
+INSERT INTO `agenda` VALUES (1,100,1,'Transferência para5678 5678','2014-10-28 00:00:00','2014-10-28 13:00:30'),(2,100,1,'Pagamento do Boleto: 1234','2014-10-28 00:00:00','2014-10-28 14:08:18');
 /*!40000 ALTER TABLE `agenda` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,7 +69,7 @@ CREATE TABLE `conta` (
   KEY `fk_conta_1_idx` (`tipo_conta`),
   CONSTRAINT `fk_conta_1` FOREIGN KEY (`tipo_conta`) REFERENCES `tipo_conta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_conta_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,6 +78,7 @@ CREATE TABLE `conta` (
 
 LOCK TABLES `conta` WRITE;
 /*!40000 ALTER TABLE `conta` DISABLE KEYS */;
+INSERT INTO `conta` VALUES (1,2,'1234','1234',1,'1234',3900,7500,1,'2014-10-26 00:00:00','2014-10-28 13:58:06'),(2,1,'5678','5678',1,'5678',10000,5100,1,'2014-10-26 00:00:00','2014-10-28 12:23:38');
 /*!40000 ALTER TABLE `conta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,13 +91,14 @@ DROP TABLE IF EXISTS `favoritos`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `favoritos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `conta_id` int(11) DEFAULT NULL,
   `usuario_id` int(11) DEFAULT NULL,
   `apelido` varchar(255) DEFAULT NULL,
   `cpf` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
+  `conta_id` int(11) DEFAULT NULL,
+  `tipo_conta` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,6 +107,7 @@ CREATE TABLE `favoritos` (
 
 LOCK TABLES `favoritos` WRITE;
 /*!40000 ALTER TABLE `favoritos` DISABLE KEYS */;
+INSERT INTO `favoritos` VALUES (4,2,'Padre Marcelo','1234567890','2014-10-28 02:48:20',2,2);
 /*!40000 ALTER TABLE `favoritos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,12 +125,13 @@ CREATE TABLE `movimentacao` (
   `descricao` varchar(255) NOT NULL,
   `valor` float NOT NULL,
   `created_at` datetime NOT NULL,
+  `saldo` float NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_movimentacao_1_idx` (`conta_id`),
   KEY `fk_movimentacao_2_idx` (`tipo_conta`),
   CONSTRAINT `fk_movimentacao_1` FOREIGN KEY (`conta_id`) REFERENCES `conta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_movimentacao_2` FOREIGN KEY (`tipo_conta`) REFERENCES `tipo_conta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,6 +140,7 @@ CREATE TABLE `movimentacao` (
 
 LOCK TABLES `movimentacao` WRITE;
 /*!40000 ALTER TABLE `movimentacao` DISABLE KEYS */;
+INSERT INTO `movimentacao` VALUES (1,1,1,'Transferência para 5789',1500,'2014-08-15 00:00:00',10000),(2,1,2,'Transferência para1234 1234',100,'2014-10-28 04:56:09',9500),(3,1,2,'Transferência para1234 1234',100,'2014-10-28 04:59:23',4700),(4,1,2,'Transferência para1234 1234',100,'2014-10-28 05:03:59',9400),(5,1,2,'Transferência para1234 1234',100,'2014-10-28 05:04:48',9400),(6,1,2,'Transferência para1234 1234',100,'2014-10-28 05:05:54',4500),(7,1,2,'Transferência para1234 1234',100,'2014-10-28 05:07:20',9300),(8,1,2,'Transferência para1234 1234',100,'2014-10-28 05:08:05',9300),(9,1,2,'Transferência para1234 1234',100,'2014-10-28 05:21:20',4300),(10,1,2,'Transferência para1234 1234',100,'2014-10-28 05:22:15',4300),(11,1,2,'Transferência para1234 1234',100,'2014-10-28 05:24:40',9100),(12,1,2,'Transferência para1234 1234',100,'2014-10-28 05:25:47',9100),(13,1,2,'Transferência para1234 1234',100,'2014-10-28 05:26:22',4100),(14,1,2,'Transferência para1234 1234',100,'2014-10-28 05:27:34',4100),(15,1,2,'Transferência para1234 1234',100,'2014-10-28 05:28:12',4100),(16,1,2,'Transferência para1234 1234',100,'2014-10-28 05:36:25',8800),(17,1,2,'Transferência para1234 1234',100,'2014-10-28 05:39:39',4000),(18,1,2,'Transferência para1234 1234',100,'2014-10-28 05:55:53',8700),(19,1,2,'Transferência para5678 5678',100,'2014-10-28 12:16:47',3900),(20,1,2,'Transferência para5678 5678',100,'2014-10-28 12:23:46',3900),(22,1,1,'Pagamento do Boleto: 12345678901234567890',100,'2014-10-28 13:58:08',7500);
 /*!40000 ALTER TABLE `movimentacao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,7 +190,7 @@ CREATE TABLE `tipo_conta` (
 
 LOCK TABLES `tipo_conta` WRITE;
 /*!40000 ALTER TABLE `tipo_conta` DISABLE KEYS */;
-INSERT INTO `tipo_conta` VALUES (1,'Poupança'),(2,'Corrente');
+INSERT INTO `tipo_conta` VALUES (1,'PoupanÃ§a'),(2,'Corrente');
 /*!40000 ALTER TABLE `tipo_conta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,7 +210,7 @@ CREATE TABLE `usuario` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,17 +219,9 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'dfdf',NULL,56,1,'2014-10-15 19:15:49',NULL);
+INSERT INTO `usuario` VALUES (1,'dfdf',NULL,56,1,'2014-10-15 19:15:49',NULL),(2,'ALLAN OLIVEIRA','ALLANCOSTA@PLUSOFT.COM.BR',24,1,'2014-10-26 19:15:49',NULL);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'trampolin_bank'
---
-
---
--- Dumping routines for database 'trampolin_bank'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -234,4 +232,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-26 12:57:41
+-- Dump completed on 2014-10-28 20:00:16
