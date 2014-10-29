@@ -51,7 +51,7 @@ public class PagamentoManagerBean {
 			new MovimentacaoDAO().incluir(movimentacao);
 		}
 		
-		return "inicio";
+		return "sucesso";
 	}
 	
 	public String agendar() throws ParseException{
@@ -69,7 +69,7 @@ public class PagamentoManagerBean {
 		
 		new AgendaDAO().incluir(agenda);
 		
-		return "inicio";
+		return "sucesso";
 	}
 	
 	

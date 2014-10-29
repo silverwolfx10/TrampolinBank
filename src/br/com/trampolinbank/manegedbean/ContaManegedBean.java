@@ -28,27 +28,16 @@ public class ContaManegedBean extends Conta{
 	private Movimentacao movimentacao = null;
 	private List<Movimentacao> listaMovimentacoes;
 	
-//	@PostConstruct
-//	public void teste(){
-//		Conta contaLogada = (Conta) ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().getAttribute("contaLogada");
-//		
-//		if(contaLogada != null){
-//			Conta conta = new ContaDAO().get(contaLogada.getId());
-//			this.populaObj(conta);
-//			
-//		}
-//	}
 	
-	public Float getSaldoCorrente(){
-			Conta contaLogada = (Conta) ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().getAttribute("contaLogada");
-		
-			if(contaLogada != null){
-				Conta conta = new ContaDAO().get(contaLogada.getId());
-				this.populaObj(conta);
-				
-			}
+	public void initialize(){
+		Conta contaLogada = (Conta) ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().getAttribute("contaLogada");
+	
+		if(contaLogada != null){
+			Conta conta = new ContaDAO().get(contaLogada.getId());
+			this.populaObj(conta);
 			
-			return super.getSaldoCorrente();
+		}
+		listaMovimentacoes = new MovimentacaoDAO().listar();
 	}
 	
 	public String logar(){
@@ -113,7 +102,6 @@ public class ContaManegedBean extends Conta{
 	}
 
 	public List<Movimentacao> getListaMovimentacoes() {
-		listaMovimentacoes = new MovimentacaoDAO().listar();
 		return listaMovimentacoes;
 	}
 

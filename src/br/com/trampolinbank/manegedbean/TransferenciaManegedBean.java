@@ -57,7 +57,7 @@ public class TransferenciaManegedBean {
 		
 		new AgendaDAO().incluir(agenda);
 		
-		return "inicio";
+		return "sucesso";
 	}
 	
 	public String transferir(){
@@ -92,7 +92,7 @@ public class TransferenciaManegedBean {
 			new MovimentacaoDAO().incluir(movimentacao);
 		}
 		
-		return "inicio";
+		return "sucesso";
 	}
 	
 	public String cadastrar(){

@@ -3,9 +3,15 @@
 		xmlns:h="http://java.sun.com/jsf/html"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:f="http://java.sun.com/jsf/core">
+	
 
 	<ui:composition template="inicio.xhtml" >
 		<ui:define name="conteudo">
+		
+	<f:metadata>
+ 		<f:event type="preRenderView" listener="#{conta.initialize}"  />
+	</f:metadata>
+		
 			<div class="saldo">
 	            #{msg.labelSaldoAtual} R$ #{conta.saldoCorrente}
 	        </div>
